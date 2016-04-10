@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var td = require('testdouble');
-var ethereumGatewayTd = td.replace('./ethereum_gateway');
+var ethereumGatewayTd = td.replace('./boundaries/ethereum_gateway');
 var ledger_gateway = require('./ledger_gateway');
 
 describe('ledger gateway', function() {

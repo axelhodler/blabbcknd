@@ -1,5 +1,5 @@
 var LedgerEntry = require('./model/ledger_entry');
-var ethereumGateway = require('./ethereum_gateway');
+var ethereumGateway = require('./boundaries/ethereum_gateway');
 
 module.exports = {
   balanceOf: function(accountId) {
