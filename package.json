@@ -5,5 +5,8 @@
   "description": "",
   "devDependencies": {
     "mocha": "^2.4.5"
+  },
+  "scripts" : {
+    "test": "./node_modules/mocha/bin/mocha src"
   }
 }
