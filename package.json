@@ -4,9 +4,10 @@
   "private": true,
   "description": "",
   "devDependencies": {
+    "chai": "^3.5.0",
     "mocha": "^2.4.5"
   },
-  "scripts" : {
+  "scripts": {
     "test": "./node_modules/mocha/bin/mocha src"
   }
 }
