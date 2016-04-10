@@ -1,11 +1,8 @@
 var LedgerEntry = require('./model/ledger_entry');
+var ethereumGateway = require('./ethereum_gateway');
 
 module.exports = {
-  create: function(ethereumGateway) {
-    this.ethereumGateway = ethereumGateway;
-    return this;
-  },
   balanceOf: function(accountId) {
-    return new LedgerEntry(accountId, this.ethereumGateway.balanceOf(accountId));
+    return new LedgerEntry(accountId, ethereumGateway.balanceOf(accountId));
   }
 };
