@@ -12,4 +12,15 @@ describe('ledger gateway', function() {
     expect(ledgerEntry.getAccountId()).to.equal('accountId');
     expect(ledgerEntry.getTokenAmount()).to.equal(1000);
   });
+
+  it('provides list of balances for provided accountids', function() {
+    td.when(ethereumGatewayTd.balanceOf('firstAccountId')).thenReturn(10);
+    td.when(ethereumGatewayTd.balanceOf('secondAccountId')).thenReturn(11);
+
+    var ledgerEntries = ledger_gateway.balancesForAllIn(['firstAccountId', 'secondAccountId']);
+
+    expect(ledgerEntries.length).to.equal(2);
+    expect(ledgerEntries[0].getTokenAmount()).to.equal(10);
+    expect(ledgerEntries[1].getTokenAmount()).to.equal(11);
+  });
 });
