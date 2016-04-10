@@ -5,7 +5,8 @@
   "description": "",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "testdouble": "^1.4.1"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/**"
