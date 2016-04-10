@@ -1,6 +1,9 @@
 {
   "name": "blabbackend",
   "version": "1.0.0",
-  "private":  true,
-  "description": ""
+  "private": true,
+  "description": "",
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
 }
