@@ -9,7 +9,8 @@
     "testdouble": "^1.4.1"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha src/**"
+    "test": "./node_modules/mocha/bin/mocha src/**",
+    "start": "node src/boundaries/ledger_rest_api.js"
   },
   "dependencies": {
     "express": "^4.13.4"
