@@ -7,7 +7,7 @@ var buildLedgerEntry = function(accountId) {
 };
 module.exports = {
   balanceOf: function(accountId) {
-    return buildLedgerEntry(accountId);
+    return buildLedgerEntry(accountGateway.fetchEthereumAddressFor(accountId));
   },
   allBalances: function() {
     return accountGateway.fetchAllEtherAddresses().map(function(accountId) {

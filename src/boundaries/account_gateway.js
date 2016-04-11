@@ -11,5 +11,8 @@ module.exports = {
     return accounts.map(function(account) {
       return account.getEtherAddress();
     });
+  },
+  fetchEthereumAddressFor: function(accountId) {
+    
   }
 };

@@ -6,9 +6,10 @@ var ledger_gateway = require('./ledger_gateway');
 
 describe('ledger gateway', function() {
   it('provides balance for an account id', function() {
+    td.when(accountGateway.fetchEthereumAddressFor('accountId')).thenReturn('ethereumAddress');
     td.when(ethereumGatewayTd.balanceOf('ethereumAddress')).thenReturn(1000);
 
-    var ledgerEntry = ledger_gateway.balanceOf('ethereumAddress');
+    var ledgerEntry = ledger_gateway.balanceOf('accountId');
 
     expect(ledgerEntry.getEthereumAddress()).to.equal('ethereumAddress');
     expect(ledgerEntry.getTokenAmount()).to.equal(1000);
