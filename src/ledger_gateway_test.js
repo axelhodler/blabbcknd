@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var td = require('testdouble');
 var ethereumGatewayTd = td.replace('./boundaries/ethereum_gateway');
+var accountGateway = td.replace('./boundaries/account_gateway');
 var ledger_gateway = require('./ledger_gateway');
 
 describe('ledger gateway', function() {
@@ -22,5 +23,17 @@ describe('ledger gateway', function() {
     expect(ledgerEntries.length).to.equal(2);
     expect(ledgerEntries[0].getTokenAmount()).to.equal(10);
     expect(ledgerEntries[1].getTokenAmount()).to.equal(11);
+  });
+
+  it('provides list of all ledgers', function() {
+    td.when(accountGateway.fetchAll()).thenReturn(['firstAccountId', 'secondAccountId']);
+    td.when(ethereumGatewayTd.balanceOf('firstAccountId')).thenReturn(28);
+    td.when(ethereumGatewayTd.balanceOf('secondAccountId')).thenReturn(36);
+
+    var ledgerEntries = ledger_gateway.allBalances();
+
+    expect(ledgerEntries.length).to.equal(2);
+    expect(ledgerEntries[0].getTokenAmount()).to.equal(28);
+    expect(ledgerEntries[1].getTokenAmount()).to.equal(36);
   });
 });
