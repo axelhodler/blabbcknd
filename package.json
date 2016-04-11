@@ -10,5 +10,8 @@
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/**"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
   }
 }
