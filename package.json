@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/**",
-    "start": "node src/boundaries/ledger_rest_api.js"
+    "start": "node src/boundaries/ledger_rest_api.js",
+    "postinstall": "npm rebuild"
   },
   "dependencies": {
     "express": "^4.13.4",
