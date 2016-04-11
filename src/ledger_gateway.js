@@ -6,11 +6,6 @@ module.exports = {
   balanceOf: function(accountId) {
     return new LedgerEntry(accountId, ethereumGateway.balanceOf(accountId));
   },
-  balancesForAllIn: function(accountIds) {
-    return accountIds.map(function(accountId) {
-      return new LedgerEntry(accountId, ethereumGateway.balanceOf(accountId));
-    });
-  },
   allBalances: function() {
     return accountGateway.fetchAll().map(function(accountId) {
       return new LedgerEntry(accountId, ethereumGateway.balanceOf(accountId));
