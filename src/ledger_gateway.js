@@ -10,7 +10,7 @@ module.exports = {
     return buildLedgerEntry(accountId);
   },
   allBalances: function() {
-    return accountGateway.fetchAll().map(function(accountId) {
+    return accountGateway.fetchAllEtherAddresses().map(function(accountId) {
       return buildLedgerEntry(accountId);
     });
   }

@@ -15,9 +15,9 @@ describe('ledger gateway', function() {
   });
 
   it('provides list of all ledgers', function() {
-    td.when(accountGateway.fetchAll()).thenReturn(['firstAccountId', 'secondAccountId']);
-    td.when(ethereumGatewayTd.balanceOf('firstAccountId')).thenReturn(28);
-    td.when(ethereumGatewayTd.balanceOf('secondAccountId')).thenReturn(36);
+    td.when(accountGateway.fetchAllEtherAddresses()).thenReturn(['firstAddress', 'secondAddress']);
+    td.when(ethereumGatewayTd.balanceOf('firstAddress')).thenReturn(28);
+    td.when(ethereumGatewayTd.balanceOf('secondAddress')).thenReturn(36);
 
     var ledgerEntries = ledger_gateway.allBalances();
 
