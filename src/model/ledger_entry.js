@@ -1,10 +1,10 @@
-function LedgerEntry(accountId, tokenAmount) {
-  this.accountId = accountId;
+function LedgerEntry(ethereumAddress, tokenAmount) {
+  this.ethereumAddress = ethereumAddress;
   this.tokenAmount = tokenAmount;
 }
 
-LedgerEntry.prototype.getAccountId = function() {
-  return this.accountId;
+LedgerEntry.prototype.getEthereumAddress = function() {
+  return this.ethereumAddress;
 };
 
 LedgerEntry.prototype.getTokenAmount = function() {

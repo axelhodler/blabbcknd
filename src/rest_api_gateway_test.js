@@ -9,7 +9,7 @@ describe('rest api gateway', function() {
     Response.prototype.send = function(){};
     var responseSpy = td.object(Response);
     var allLedgerEntriesStub = [
-      new LedgerEntry('accountId', 22),
+      new LedgerEntry('ethereumAddress', 22),
       new LedgerEntry('accountId2', 23)
     ];
     td.when(ledgerGatewayTd.allBalances()).thenReturn(allLedgerEntriesStub);

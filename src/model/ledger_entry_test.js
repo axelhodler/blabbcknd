@@ -5,11 +5,11 @@ describe('ledger entry', function() {
   var entry;
 
   beforeEach(function() {
-    entry = new LedgerEntry('accountId', 1000);
+    entry = new LedgerEntry('ethereumAddress', 1000);
   });
 
-  it('holds accountId', function() {
-    expect(entry.getAccountId()).to.equal('accountId');
+  it('holds ethereumAddress', function() {
+    expect(entry.getEthereumAddress()).to.equal('ethereumAddress');
   });
 
   it('holds the amount of tokens the account owns', function() {
