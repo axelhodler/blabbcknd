@@ -13,6 +13,7 @@
     "start": "node src/boundaries/ledger_rest_api.js"
   },
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "jsonwebtoken": "^5.7.0"
   }
 }
