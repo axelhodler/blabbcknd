@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var Account = require('./account');
 
 describe('account', function() {

@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var LedgerEntry = require('./ledger_entry');
 
 describe('ledger entry', function() {

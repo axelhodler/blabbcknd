@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var accountGateway = td.replace('./boundaries/account_gateway');
 var tokenProvider = td.replace('./boundaries/token_provider');
 var authUser = require('./auth_user');
