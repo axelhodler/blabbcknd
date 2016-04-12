@@ -1,4 +1,5 @@
 var ledgerGatewayTd = td.replace('./ledger_gateway');
+var authUser = td.replace('./auth_user');
 var api = require('./rest_api_gateway');
 var LedgerEntry = require('./model/ledger_entry');
 
@@ -30,5 +31,14 @@ describe('rest api gateway', function() {
     api.getBalanceFor(requestStub, responseSpy);
 
     td.verify(responseSpy.send(100));
+  });
+
+  it('can provide tokens to users', function() {
+    var requestStub = { body: { email: 'foo@bar.io', password: 'pw'}};
+    td.when(authUser.login(requestStub.body.email, requestStub.body.password)).thenReturn('validToken');
+
+    api.login(requestStub, responseSpy);
+
+    td.verify(responseSpy.send('validToken'));
   });
 });
