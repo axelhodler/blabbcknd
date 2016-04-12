@@ -4,39 +4,42 @@ var authUser = require('./auth_user');
 var Account = require('./model/account');
 
 describe('auth user', function() {
-  var stubPersistedAccount = function(email, password) {
-    var accountStub = new Account(1, email, password);
-    td.when(accountGateway.fetchAccountByEmail(email)).thenReturn(accountStub);
-  };
 
-  it('returns token if credentials are valid', function() {
-    var EMAIL = 'email@host.io';
-    stubPersistedAccount(EMAIL, 'password');
-    td.when(tokenProvider.sign(EMAIL)).thenReturn('validToken');
+  describe('login', function() {
+    var stubPersistedAccount = function(email, password) {
+      var accountStub = new Account(1, email, password);
+      td.when(accountGateway.fetchAccountByEmail(email)).thenReturn(accountStub);
+    };
 
-    var token = authUser.login(EMAIL, 'password');
+    it('returns token if credentials are valid', function() {
+      var EMAIL = 'email@host.io';
+      stubPersistedAccount(EMAIL, 'password');
+      td.when(tokenProvider.sign(EMAIL)).thenReturn('validToken');
 
-    expect(token).to.equal('validToken');
-  });
+      var token = authUser.login(EMAIL, 'password');
 
-  it('returns token if credentials are valid - triangulation', function() {
-    var EMAIL = 'foo@bar.io';
-    stubPersistedAccount(EMAIL, 'pw');
-    td.when(tokenProvider.sign(EMAIL)).thenReturn('aValidToken');
+      expect(token).to.equal('validToken');
+    });
 
-    var token = authUser.login(EMAIL, 'pw');
+    it('returns token if credentials are valid - triangulation', function() {
+      var EMAIL = 'foo@bar.io';
+      stubPersistedAccount(EMAIL, 'pw');
+      td.when(tokenProvider.sign(EMAIL)).thenReturn('aValidToken');
 
-    expect(token).to.equal('aValidToken');
-  });
+      var token = authUser.login(EMAIL, 'pw');
 
-  it('does not return a token for invalid credentials', function() {
-    var EMAIL = 'email@host.io';
-    stubPersistedAccount(EMAIL, 'correctPassword');
+      expect(token).to.equal('aValidToken');
+    });
 
-    var token = authUser.login(EMAIL, 'incorrectPassword');
+    it('does not return a token for invalid credentials', function() {
+      var EMAIL = 'email@host.io';
+      stubPersistedAccount(EMAIL, 'correctPassword');
 
-    expect(token).to.equal(undefined);
-    td.verify(tokenProvider.sign('payload'), {times: 0});
+      var token = authUser.login(EMAIL, 'incorrectPassword');
+
+      expect(token).to.equal(undefined);
+      td.verify(tokenProvider.sign('payload'), {times: 0});
+    });
   });
 
   describe('token validation', function() {
