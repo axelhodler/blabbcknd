@@ -6,6 +6,7 @@ var LedgerEntry = require('./model/ledger_entry');
 describe('rest api gateway', function() {
   function Response(){};
   Response.prototype.send = function(){};
+  Response.prototype.status = function(){};
   var responseSpy;
 
   beforeEach(function() {
@@ -13,14 +14,35 @@ describe('rest api gateway', function() {
   });
 
   describe('ledger', function() {
+    var stubbedTokenHeader = function(value) {
+      return {
+        get : function(header) {
+          if (header === 'Authorization') {
+            return value;
+          }
+        }
+      };
+    };
+
+    it('does not return ledger entries if token invalid', function() {
+      td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
+      var requestStub = stubbedTokenHeader('invalidToken');
+
+      var overview = api.getAll(requestStub, responseSpy);
+
+      td.verify(responseSpy.status(401));
+    });
+
     it('gets all ledgerentries', function() {
       var allLedgerEntriesStub = [
         new LedgerEntry('ethereumAddress', 22),
         new LedgerEntry('accountId2', 23)
       ];
+      td.when(authUser.isTokenValid('validToken')).thenReturn(true);
+      var requestStub = stubbedTokenHeader('validToken');
       td.when(ledgerGatewayTd.allBalances()).thenReturn(allLedgerEntriesStub);
 
-      var overview = api.getAll({}, responseSpy);
+      var overview = api.getAll(requestStub, responseSpy);
 
       td.verify(responseSpy.send(allLedgerEntriesStub));
     });
