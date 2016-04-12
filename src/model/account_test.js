@@ -7,10 +7,10 @@ describe('account', function() {
     expect(acc.getId()).to.equal(1);
   });
 
-  it('has mail address', function () {
+  it('has email address', function () {
     var acc = new Account(1, 'foo@bar.baz');
 
-    expect(acc.getMail()).to.equal('foo@bar.baz');
+    expect(acc.getEmail()).to.equal('foo@bar.baz');
   });
 
   it('has ethereum address', function() {

@@ -1,6 +1,6 @@
-function Account(id, mail, password, etherAddress) {
+function Account(id, email, password, etherAddress) {
   this.id = id;
-  this.mail = mail;
+  this.email = email;
   this.password = password;
   this.etherAddress = etherAddress;
 }
@@ -9,8 +9,8 @@ Account.prototype.getId = function() {
   return this.id;
 };
 
-Account.prototype.getMail = function() {
-  return this.mail;
+Account.prototype.getEmail = function() {
+  return this.email;
 };
 
 Account.prototype.passwordMatches = function(password) {

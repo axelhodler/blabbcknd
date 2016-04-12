@@ -5,11 +5,11 @@ var Account = require('./model/account');
 
 describe('auth user', function() {
   it('returns token if credentials are valid', function() {
-    td.when(tokenProvider.sign('mail@host.io')).thenReturn('validToken');
-    var accountStub = new Account(1, 'mail@host.io', 'password');
-    td.when(accountGateway.fetchAccountByEmail('mail@host.io')).thenReturn(accountStub);
+    td.when(tokenProvider.sign('email@host.io')).thenReturn('validToken');
+    var accountStub = new Account(1, 'email@host.io', 'password');
+    td.when(accountGateway.fetchAccountByEmail('email@host.io')).thenReturn(accountStub);
 
-    var token = authUser.login('mail@host.io', 'password');
+    var token = authUser.login('email@host.io', 'password');
 
     expect(token).to.equal('validToken');
   });
@@ -25,10 +25,10 @@ describe('auth user', function() {
   });
 
   it('does not return a token for invalid credentials', function() {
-    var accountStub = new Account(1, 'mail@host.io', 'correctPassword');
-    td.when(accountGateway.fetchAccountByEmail('mail@host.io')).thenReturn(accountStub);
+    var accountStub = new Account(1, 'email@host.io', 'correctPassword');
+    td.when(accountGateway.fetchAccountByEmail('email@host.io')).thenReturn(accountStub);
 
-    var token = authUser.login('mail@host.io', 'incorrectPassword');
+    var token = authUser.login('email@host.io', 'incorrectPassword');
 
     expect(token).to.equal(undefined);
     td.verify(tokenProvider.sign('payload'), {times: 0});
