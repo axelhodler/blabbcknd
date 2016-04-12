@@ -14,5 +14,8 @@ module.exports = {
   },
   fetchEthereumAddressFor: function(accountId) {
     
+  },
+  fetchAccountByEmail: function(email) {
+
   }
 };
