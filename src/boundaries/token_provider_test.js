@@ -2,13 +2,13 @@ var expect = require('chai').expect;
 var tokenProvider = require('./token_provider');
 
 describe('token provider', function() {
-  it('can sign, decond and verify tokens', function() {
+  it('can sign and get verified content', function() {
     var secret = 'secret';
 
-    var token = tokenProvider.sign({foo: 'bar'}, secret);
-    var decodedPayload = tokenProvider.decodePayload(token);
+    var token = tokenProvider.sign({foo: 'bar', baz: 'lol'}, secret);
 
-    expect(decodedPayload.foo).to.equal('bar');
-    expect(tokenProvider.verify(token, secret).foo).to.equal('bar');
+    var verfiedContent = tokenProvider.verifiedContent(token, secret);
+    expect(verfiedContent.foo).to.equal('bar');
+    expect(verfiedContent.baz).to.equal('lol');
   });
 });
