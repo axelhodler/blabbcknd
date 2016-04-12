@@ -17,6 +17,10 @@ Account.prototype.getPassword = function() {
   return this.password;
 };
 
+Account.prototype.passwordMatches = function(password) {
+  return this.password === password;
+};
+
 Account.prototype.getEtherAddress = function() {
   return this.etherAddress;
 };
