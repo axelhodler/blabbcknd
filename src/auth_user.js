@@ -6,5 +6,13 @@ module.exports = {
     if (accountGateway.fetchAccountByEmail(email).passwordMatches(password)) {
       return tokenProvider.sign(email);
     }
+  },
+  isTokenValid: function(token) {
+    try {
+      tokenProvider.verifiedContent(token);
+      return true;
+    } catch(err) {
+      return false;
+    }
   }
 };

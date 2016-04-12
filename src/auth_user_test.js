@@ -38,4 +38,22 @@ describe('auth user', function() {
     expect(token).to.equal(undefined);
     td.verify(tokenProvider.sign('payload'), {times: 0});
   });
+
+  describe('token validation', function() {
+    it('returns true for valid token', function() {
+      td.when(tokenProvider.verifiedContent('token')).thenReturn('payload');
+
+      var isValid = authUser.isTokenValid('token');
+
+      expect(isValid).to.equal(true);
+    });
+
+    it('returns false for invalid token', function() {
+      td.when(tokenProvider.verifiedContent('invalidToken')).thenThrow();
+
+      var isValid = authUser.isTokenValid('invalidToken');
+
+      expect(isValid).to.equal(false);
+    });
+  });
 });
