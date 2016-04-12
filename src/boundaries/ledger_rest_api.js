@@ -15,7 +15,7 @@ app.get('/ledgers/:id', function(req, res) {
 });
 
 app.post('/auth', function(req, res) {
-
+  restApiGateway.login(req, res);
 });
 
 app.listen(3000, function () {
