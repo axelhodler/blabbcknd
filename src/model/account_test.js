@@ -13,21 +13,22 @@ describe('account', function() {
     expect(acc.getMail()).to.equal('foo@bar.baz');
   });
 
-  it('knows if password matches', function() {
-    var acc = new Account(1, 'irrelevant', 'secret');
-
-    expect(acc.passwordMatches('secret')).to.equal(true);
-  });
-
-  it('knows if passwords do not match', function() {
-    var acc = new Account(1, 'irrelevant', 'secret');
-
-    expect(acc.passwordMatches('incorrect')).to.equal(false);
-  });
-
   it('has ethereum address', function() {
     var acc = new Account(1, 'irrelevant', 'irrelevant', 'address');
 
     expect(acc.getEtherAddress()).to.equal('address');
   });
+
+  describe('knows', function() {
+    var acc = new Account(1, 'irrelevant', 'secret');
+
+    it('if password matches', function() {
+      expect(acc.passwordMatches('secret')).to.equal(true);
+    });
+
+    it('if passwords do not match', function() {
+      expect(acc.passwordMatches('incorrect')).to.equal(false);
+    });
+  });
+
 });
