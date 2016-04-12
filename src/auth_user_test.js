@@ -4,11 +4,15 @@ var authUser = require('./auth_user');
 var Account = require('./model/account');
 
 describe('auth user', function() {
+  var stubPersistedAccount = function(email, password) {
+    var accountStub = new Account(1, email, password);
+    td.when(accountGateway.fetchAccountByEmail(email)).thenReturn(accountStub);
+  };
+
   it('returns token if credentials are valid', function() {
     var EMAIL = 'email@host.io';
+    stubPersistedAccount(EMAIL, 'password');
     td.when(tokenProvider.sign(EMAIL)).thenReturn('validToken');
-    var accountStub = new Account(1, EMAIL, 'password');
-    td.when(accountGateway.fetchAccountByEmail(EMAIL)).thenReturn(accountStub);
 
     var token = authUser.login(EMAIL, 'password');
 
@@ -17,9 +21,8 @@ describe('auth user', function() {
 
   it('returns token if credentials are valid - triangulation', function() {
     var EMAIL = 'foo@bar.io';
+    stubPersistedAccount(EMAIL, 'pw');
     td.when(tokenProvider.sign(EMAIL)).thenReturn('aValidToken');
-    var accountStub = new Account(1, EMAIL, 'pw');
-    td.when(accountGateway.fetchAccountByEmail(EMAIL)).thenReturn(accountStub);
 
     var token = authUser.login(EMAIL, 'pw');
 
@@ -28,8 +31,7 @@ describe('auth user', function() {
 
   it('does not return a token for invalid credentials', function() {
     var EMAIL = 'email@host.io';
-    var accountStub = new Account(1, EMAIL, 'correctPassword');
-    td.when(accountGateway.fetchAccountByEmail(EMAIL)).thenReturn(accountStub);
+    stubPersistedAccount(EMAIL, 'correctPassword');
 
     var token = authUser.login(EMAIL, 'incorrectPassword');
 
