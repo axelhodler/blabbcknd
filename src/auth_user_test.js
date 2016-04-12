@@ -13,4 +13,24 @@ describe('auth user', function() {
 
     expect(token).to.equal('validToken');
   });
+
+  it('returns token if credentials are valid - triangulation', function() {
+    td.when(tokenProvider.sign('payload')).thenReturn('aValidToken');
+    var accountStub = new Account(1, 'foo@bar.io', 'pw');
+    td.when(accountGateway.fetchAccountByEmail('foo@bar.io')).thenReturn(accountStub);
+
+    var token = authUser.login('foo@bar.io', 'pw');
+
+    expect(token).to.equal('aValidToken');
+  });
+
+  it('does not return a token for invalid credentials', function() {
+    var accountStub = new Account(1, 'mail@host.io', 'correctPassword');
+    td.when(accountGateway.fetchAccountByEmail('mail@host.io')).thenReturn(accountStub);
+
+    var token = authUser.login('mail@host.io', 'incorrectPassword');
+
+    expect(token).to.equal(undefined);
+    td.verify(tokenProvider.sign('payload'), {times: 0});
+  });
 });
