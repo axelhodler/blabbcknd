@@ -1,4 +1,3 @@
-var td = require('testdouble');
 var ledgerGatewayTd = td.replace('./ledger_gateway');
 var api = require('./rest_api_gateway');
 var LedgerEntry = require('./model/ledger_entry');

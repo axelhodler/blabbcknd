@@ -1,5 +1,4 @@
 var expect = require('chai').expect;
-var td = require('testdouble');
 var ethereumGatewayTd = td.replace('./boundaries/ethereum_gateway');
 var accountGateway = td.replace('./boundaries/account_gateway');
 var ledger_gateway = require('./ledger_gateway');
