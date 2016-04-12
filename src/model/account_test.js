@@ -25,12 +25,6 @@ describe('account', function() {
     expect(acc.passwordMatches('incorrect')).to.equal(false);
   });
 
-  it('has password', function() {
-    var acc = new Account(1, 'irrelevant', 'password');
-
-    expect(acc.getPassword()).to.equal('password');
-  });
-
   it('has ethereum address', function() {
     var acc = new Account(1, 'irrelevant', 'irrelevant', 'address');
 

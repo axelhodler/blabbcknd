@@ -13,10 +13,6 @@ Account.prototype.getMail = function() {
   return this.mail;
 };
 
-Account.prototype.getPassword = function() {
-  return this.password;
-};
-
 Account.prototype.passwordMatches = function(password) {
   return this.password === password;
 };
