@@ -13,9 +13,13 @@ module.exports = {
     });
   },
   fetchEthereumAddressFor: function(accountId) {
-    
+    return accounts.filter(function(account) {
+      return account.getId() === accountId;
+    })[0].getEtherAddress();
   },
   fetchAccountByEmail: function(email) {
-
+    return accounts.filter(function(account) {
+      return account.getEmail() === email;
+    })[0];
   }
 };
