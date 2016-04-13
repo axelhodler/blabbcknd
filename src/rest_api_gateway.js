@@ -6,7 +6,7 @@ var checkTokenValidity = function(req) {
 };
 
 var unauthorizedResponse = function(res) {
-  res.status(401);
+  res.sendStatus(401);
 };
 
 module.exports = {

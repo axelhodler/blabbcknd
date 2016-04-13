@@ -7,7 +7,7 @@ var LedgerEntry = require('./model/ledger_entry');
 describe('rest api gateway', function() {
   function Response(){};
   Response.prototype.send = function(){};
-  Response.prototype.status = function(){};
+  Response.prototype.sendStatus = function(){};
   var responseSpy;
 
   beforeEach(function() {
@@ -40,7 +40,7 @@ describe('rest api gateway', function() {
 
       var overview = api.getAll(requestStub, responseSpy);
 
-      td.verify(responseSpy.status(401));
+      td.verify(responseSpy.sendStatus(401));
     });
 
     it('gets all ledgerentries', function() {
@@ -61,7 +61,7 @@ describe('rest api gateway', function() {
 
       api.getBalanceFor(requestStub, responseSpy);
 
-      td.verify(responseSpy.status(401));
+      td.verify(responseSpy.sendStatus(401));
     });
 
     it('gets balance for accountid', function() {
