@@ -3,6 +3,7 @@ var authUser = td.replace('./auth_user');
 var api = require('./rest_api_gateway');
 var LedgerEntry = require('./model/ledger_entry');
 
+
 describe('rest api gateway', function() {
   function Response(){};
   Response.prototype.send = function(){};
@@ -14,6 +15,16 @@ describe('rest api gateway', function() {
   });
 
   describe('ledger', function() {
+    var stubInvalidToken = function() {
+      td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
+      return stubbedTokenHeader('invalidToken');
+    };
+
+    var stubValidToken = function() {
+      td.when(authUser.isTokenValid('validToken')).thenReturn(true);
+      return stubbedTokenHeader('validToken');
+    };
+
     var stubbedTokenHeader = function(value) {
       return {
         get : function(header) {
@@ -25,8 +36,7 @@ describe('rest api gateway', function() {
     };
 
     it('does not return ledger entries if token invalid', function() {
-      td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
-      var requestStub = stubbedTokenHeader('invalidToken');
+      var requestStub = stubInvalidToken();
 
       var overview = api.getAll(requestStub, responseSpy);
 
@@ -38,8 +48,7 @@ describe('rest api gateway', function() {
         new LedgerEntry('ethereumAddress', 22),
         new LedgerEntry('accountId2', 23)
       ];
-      td.when(authUser.isTokenValid('validToken')).thenReturn(true);
-      var requestStub = stubbedTokenHeader('validToken');
+      var requestStub = stubValidToken();
       td.when(ledgerGatewayTd.allBalances()).thenReturn(allLedgerEntriesStub);
 
       var overview = api.getAll(requestStub, responseSpy);
@@ -48,8 +57,7 @@ describe('rest api gateway', function() {
     });
 
     it('does not return account balance if token invalid', function() {
-      td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
-      var requestStub = stubbedTokenHeader('invalidToken');
+      var requestStub = stubInvalidToken();
 
       api.getBalanceFor(requestStub, responseSpy);
 
@@ -57,8 +65,7 @@ describe('rest api gateway', function() {
     });
 
     it('gets balance for accountid', function() {
-      td.when(authUser.isTokenValid('validToken')).thenReturn(true);
-      var requestStub = stubbedTokenHeader('validToken');
+      var requestStub = stubValidToken();
       requestStub.params = {id: 1};
       td.when(ledgerGatewayTd.balanceOf(1)).thenReturn(100);
 
