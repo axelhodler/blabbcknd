@@ -8,7 +8,9 @@ module.exports = {
       : res.status(401);
   },
   getBalanceFor: function(req, res) {
-    res.send(ledgerGateway.balanceOf(req.params.id));
+    authUser.isTokenValid(req.get('Authorization'))
+      ? res.send(ledgerGateway.balanceOf(req.params.id))
+      : res.status(401);
   },
   login: function(req, res) {
     res.send(authUser.login(req.body.email, req.body.password));

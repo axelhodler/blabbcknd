@@ -47,8 +47,19 @@ describe('rest api gateway', function() {
       td.verify(responseSpy.send(allLedgerEntriesStub));
     });
 
+    it('does not return account balance if token invalid', function() {
+      td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
+      var requestStub = stubbedTokenHeader('invalidToken');
+
+      api.getBalanceFor(requestStub, responseSpy);
+
+      td.verify(responseSpy.status(401));
+    });
+
     it('gets balance for accountid', function() {
-      var requestStub = { params : { id:1 }};
+      td.when(authUser.isTokenValid('validToken')).thenReturn(true);
+      var requestStub = stubbedTokenHeader('validToken');
+      requestStub.params = {id: 1};
       td.when(ledgerGatewayTd.balanceOf(1)).thenReturn(100);
 
       api.getBalanceFor(requestStub, responseSpy);
