@@ -14,7 +14,7 @@ module.exports = {
   },
   fetchEthereumAddressFor: function(accountId) {
     return accounts.filter(function(account) {
-      return account.getId() === accountId;
+      return account.getId() === parseInt(accountId);
     })[0].getEtherAddress();
   },
   fetchAccountByEmail: function(email) {
