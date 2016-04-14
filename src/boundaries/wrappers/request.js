@@ -1,15 +1,17 @@
-module.exports = {
-  wrap: function(request) {
-    this.request = request;
-    return this;
-  },
-  idParam: function() {
-    return this.request.params.id;
-  },
-  authorizationHeader: function() {
-    return this.request.get('Authorization');
-  },
-  body: function() {
-    return this.request.body;
-  }
+function Request(request) {
+  this.request = request;
 };
+
+Request.prototype.idParam = function() {
+  return this.request.params.id;
+};
+
+Request.prototype.authorizationHeader = function() {
+  return this.request.get('Authorization');
+};
+
+Request.prototype.body = function() {
+  return this.request.body;
+};
+
+module.exports = Request;

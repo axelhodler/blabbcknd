@@ -9,15 +9,15 @@ var restApiGateway = require('../rest_api_gateway');
 app.use(bodyParser.json());
 
 app.get('/ledgers', function (req, res) {
-  restApiGateway.getAll(Request.wrap(req), Response.wrap(res));
+  restApiGateway.getAll(new Request(req), new Response(res));
 });
 
 app.get('/ledgers/:id', function(req, res) {
-  restApiGateway.getBalanceFor(Request.wrap(req), Response.wrap(res));
+  restApiGateway.getBalanceFor(new Request(req), new Response(res));
 });
 
 app.post('/auth', function(req, res) {
-  restApiGateway.login(Request.wrap(req), Response.wrap(res));
+  restApiGateway.login(new Request(req), new Response(res));
 });
 
 app.listen(3000, function () {

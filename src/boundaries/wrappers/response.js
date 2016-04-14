@@ -1,12 +1,13 @@
-module.exports = {
-  wrap: function(response) {
-    this.response = response;
-    return this;
-  },
-  send: function(result) {
-    this.response.send(result);
-  },
-  sendUnauthorized: function() {
-    this.response.sendStatus(401);
-  }
+function Response(response) {
+  this.response = response;
 };
+
+Response.prototype.send = function(result) {
+  this.response.send(result);
+};
+
+Response.prototype.sendUnauthorized = function() {
+  this.response.sendStatus(401);
+};
+
+module.exports = Response;
