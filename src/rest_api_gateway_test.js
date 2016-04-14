@@ -3,11 +3,9 @@ var authUser = td.replace('./auth_user');
 var api = require('./rest_api_gateway');
 var LedgerEntry = require('./model/ledger_entry');
 var Request = require('./boundaries/wrappers/request');
+var Response = require('./boundaries/wrappers/response');
 
 describe('rest api gateway', function() {
-  function Response(){};
-  Response.prototype.send = function(){};
-  Response.prototype.sendStatus = function(){};
   var responseSpy,
     requestStub;
 
@@ -32,7 +30,7 @@ describe('rest api gateway', function() {
     it('does not return ledger entries if token invalid', function() {
       var overview = api.getAll(stubInvalidToken(), responseSpy);
 
-      td.verify(responseSpy.sendStatus(401));
+      td.verify(responseSpy.sendUnauthorized());
     });
 
     it('gets all ledgerentries', function() {
@@ -53,7 +51,7 @@ describe('rest api gateway', function() {
 
       api.getBalanceFor(requestStub, responseSpy);
 
-      td.verify(responseSpy.sendStatus(401));
+      td.verify(responseSpy.sendUnauthorized());
     });
 
     it('gets balance for accountid', function() {
