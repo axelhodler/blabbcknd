@@ -12,6 +12,3 @@ LedgerEntry.prototype.getTokenAmount = function() {
 };
 
 module.exports = LedgerEntry;
-
-
-
