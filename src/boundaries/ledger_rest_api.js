@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var Request = require('./wrappers/request');
 var Response = require('./wrappers/response');
 
@@ -9,6 +10,7 @@ var readLedger = require('../rest_api_read_ledger');
 var writeToLedger = require('../rest_api_write_to_ledger');
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/ledgers', function (req, res) {
   readLedger.getAll(new Request(req), new Response(res));
