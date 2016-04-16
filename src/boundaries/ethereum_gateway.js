@@ -8,7 +8,7 @@ module.exports = {
   balanceOf: function(accountId) {
     return balances.filter(function(balance) {
       return balance.id === accountId;
-    })[0];
+    })[0].amount;
   },
   moveTokens: function(from, to, amount) {
     var updatedBalances = balances.map(function(item) {
