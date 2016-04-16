@@ -59,4 +59,18 @@ describe('auth user', function() {
       expect(isValid).to.equal(false);
     });
   });
+
+  describe('token payload', function(){
+    it('mail can be accessed', function() {
+      td.when(tokenProvider.verifiedContent('token'))
+        .thenReturn('mailInDecoded@mailInDecoded.com', 'mail2@mail2.com');
+
+      var firstAuthenticatedUserMail = authUser.mailInDecoded('token');
+      var secondAuthenticatedUserMail = authUser.mailInDecoded('token');
+
+      expect(firstAuthenticatedUserMail).to.equal('mailInDecoded@mailInDecoded.com');
+      expect(secondAuthenticatedUserMail).to.equal('mail2@mail2.com');
+    });
+
+  })
 });

@@ -14,5 +14,8 @@ module.exports = {
     } catch(err) {
       return false;
     }
+  },
+  mailInDecoded: function(token) {
+    return tokenProvider.verifiedContent(token);
   }
 };
