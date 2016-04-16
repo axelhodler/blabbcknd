@@ -4,11 +4,11 @@
   "private": true,
   "description": "",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "istanbul": "^0.4.3",
-    "mocha": "^2.4.5",
-    "mocha-istanbul": "^0.2.0",
-    "testdouble": "^1.4.1"
+    "chai": "3.5.0",
+    "istanbul": "0.4.3",
+    "mocha": "2.4.5",
+    "mocha-istanbul": "0.2.0",
+    "testdouble": "1.4.1"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/helpers/** src/**",
@@ -17,8 +17,8 @@
     "postinstall": "npm rebuild"
   },
   "dependencies": {
-    "body-parser": "^1.15.0",
-    "express": "^4.13.4",
-    "jsonwebtoken": "^5.7.0"
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "jsonwebtoken": "5.7.0"
   }
 }
