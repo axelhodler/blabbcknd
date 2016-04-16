@@ -5,15 +5,16 @@ var Request = require('./wrappers/request');
 var Response = require('./wrappers/response');
 
 var restApiGateway = require('../rest_api_gateway');
+var readLedger = require('../rest_api_read_ledger');
 
 app.use(bodyParser.json());
 
 app.get('/ledgers', function (req, res) {
-  restApiGateway.getAll(new Request(req), new Response(res));
+  readLedger.getAll(new Request(req), new Response(res));
 });
 
 app.get('/ledgers/:id', function(req, res) {
-  restApiGateway.getBalanceFor(new Request(req), new Response(res));
+  readLedger.getBalanceFor(new Request(req), new Response(res));
 });
 
 app.post('/auth', function(req, res) {
