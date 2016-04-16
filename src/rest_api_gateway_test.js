@@ -1,4 +1,4 @@
-var ledgerGatewayTd = td.replace('./ledger_gateway');
+var ledgerGatewayTd = td.replace('./read_ledger');
 var authUser = td.replace('./actions/auth_user');
 var api = require('./rest_api_gateway');
 var LedgerEntry = require('./model/ledger_entry');

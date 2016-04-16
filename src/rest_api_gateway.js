@@ -1,4 +1,4 @@
-var ledgerGateway = require('./ledger_gateway');
+var readLedger = require('./read_ledger');
 var authUser = require('./actions/auth_user');
 
 var checkTokenValidity = function(req) {
@@ -12,12 +12,12 @@ var unauthorizedResponse = function(res) {
 module.exports = {
   getAll: function(req, res) {
     checkTokenValidity(req)
-      ? res.send(ledgerGateway.allBalances())
+      ? res.send(readLedger.allBalances())
       : unauthorizedResponse(res);
   },
   getBalanceFor: function(req, res) {
     checkTokenValidity(req)
-      ? res.send(ledgerGateway.balanceOf(req.idParam()))
+      ? res.send(readLedger.balanceOf(req.idParam()))
       : unauthorizedResponse(res);
   },
   login: function(req, res) {
