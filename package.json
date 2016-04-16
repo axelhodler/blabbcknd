@@ -11,8 +11,8 @@
     "testdouble": "1.4.1"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha src/helpers/** src/**",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover _mocha src/helpers/** src/**",
+    "test": "./node_modules/mocha/bin/mocha src/testhelpers/** src/**",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover _mocha src/testhelpers/** src/**",
     "start": "node src/boundaries/ledger_rest_api.js",
     "postinstall": "npm rebuild"
   },
