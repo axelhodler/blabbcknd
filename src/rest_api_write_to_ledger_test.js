@@ -12,26 +12,26 @@ describe('write to ledger', function() {
     responseSpy = td.object(Response);
   });
 
-  var stubInvalidToken = function() {
+  var stubInvalidToken = function(requestStub) {
     td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
     td.when(requestStub.authorizationHeader()).thenReturn('invalidToken');
     return requestStub;
   };
 
-  var stubValidToken = function() {
+  var stubValidToken = function(requestStub) {
     td.when(authUser.isTokenValid('validToken')).thenReturn(true);
     td.when(requestStub.authorizationHeader()).thenReturn('validToken');
     return requestStub;
   };
 
   it('is not allowed for guests', function() {
-    api.moveTokens(stubInvalidToken(), responseSpy);
+    api.moveTokens(stubInvalidToken(requestStub), responseSpy);
 
     td.verify(responseSpy.sendUnauthorized());
   });
 
   it('moves tokens if authorized', function() {
-    api.moveTokens(stubValidToken(), responseSpy);
+    api.moveTokens(stubValidToken(requestStub), responseSpy);
 
     td.verify(responseSpy.sendUnauthorized(), {times: 0});
   });

@@ -14,20 +14,20 @@ describe('ledger', function() {
     requestStub = td.object(Request);
   });
 
-  var stubInvalidToken = function() {
+  var stubInvalidToken = function(requestStub) {
     td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
     td.when(requestStub.authorizationHeader()).thenReturn('invalidToken');
     return requestStub;
   };
 
-  var stubValidToken = function() {
+  var stubValidToken = function(requestStub) {
     td.when(authUser.isTokenValid('validToken')).thenReturn(true);
     td.when(requestStub.authorizationHeader()).thenReturn('validToken');
     return requestStub;
   };
 
   it('does not return ledger entries if token invalid', function() {
-    var overview = api.getAll(stubInvalidToken(), responseSpy);
+    var overview = api.getAll(stubInvalidToken(requestStub), responseSpy);
 
     td.verify(responseSpy.sendUnauthorized());
   });
@@ -37,28 +37,25 @@ describe('ledger', function() {
       new LedgerEntry('ethereumAddress', 22),
       new LedgerEntry('accountId2', 23)
     ];
-    var requestStub = stubValidToken();
     td.when(readLedgerTd.allBalances()).thenReturn(allLedgerEntriesStub);
 
-    var overview = api.getAll(requestStub, responseSpy);
+    var overview = api.getAll(stubValidToken(requestStub), responseSpy);
 
     td.verify(responseSpy.send(allLedgerEntriesStub));
   });
 
   it('does not return account balance if token invalid', function() {
-    var requestStub = stubInvalidToken();
-
-    api.getBalanceFor(requestStub, responseSpy);
+    api.getBalanceFor(stubInvalidToken(requestStub), responseSpy);
 
     td.verify(responseSpy.sendUnauthorized());
   });
 
   it('gets balance for accountid', function() {
-    var requestStub = stubValidToken();
-    td.when(requestStub.idParam()).thenReturn(1);
+    var stubbedRequest = stubValidToken(requestStub);
+    td.when(stubbedRequest.idParam()).thenReturn(1);
     td.when(readLedgerTd.balanceOf(1)).thenReturn(100);
 
-    api.getBalanceFor(requestStub, responseSpy);
+    api.getBalanceFor(stubbedRequest, responseSpy);
 
     td.verify(responseSpy.send(100));
   });
