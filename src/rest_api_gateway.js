@@ -1,5 +1,5 @@
 var ledgerGateway = require('./ledger_gateway');
-var authUser = require('./auth_user');
+var authUser = require('./actions/auth_user');
 
 var checkTokenValidity = function(req) {
   return authUser.isTokenValid(req.authorizationHeader());

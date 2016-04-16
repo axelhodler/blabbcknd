@@ -1,7 +1,7 @@
-var accountGateway = td.replace('./boundaries/account_gateway');
-var tokenProvider = td.replace('./boundaries/token_provider');
+var accountGateway = td.replace('./../boundaries/account_gateway');
+var tokenProvider = td.replace('./../boundaries/token_provider');
 var authUser = require('./auth_user');
-var Account = require('./model/account');
+var Account = require('./../model/account');
 
 describe('auth user', function() {
 
