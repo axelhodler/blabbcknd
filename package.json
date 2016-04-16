@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/helpers/** src/**",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover _mocha src/helpers/** src/**",
     "start": "node src/boundaries/ledger_rest_api.js",
     "postinstall": "npm rebuild"
   },
