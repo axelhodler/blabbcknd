@@ -14,20 +14,8 @@ describe('ledger', function() {
     requestStub = td.object(Request);
   });
 
-  var stubInvalidToken = function(requestStub) {
-    td.when(authUser.isTokenValid('invalidToken')).thenReturn(false);
-    td.when(requestStub.authorizationHeader()).thenReturn('invalidToken');
-    return requestStub;
-  };
-
-  var stubValidToken = function(requestStub) {
-    td.when(authUser.isTokenValid('validToken')).thenReturn(true);
-    td.when(requestStub.authorizationHeader()).thenReturn('validToken');
-    return requestStub;
-  };
-
   it('does not return ledger entries if token invalid', function() {
-    var overview = api.getAll(stubInvalidToken(requestStub), responseSpy);
+    var overview = api.getAll(stubInvalidToken(requestStub, authUser), responseSpy);
 
     td.verify(responseSpy.sendUnauthorized());
   });
@@ -39,19 +27,19 @@ describe('ledger', function() {
     ];
     td.when(readLedgerTd.allBalances()).thenReturn(allLedgerEntriesStub);
 
-    var overview = api.getAll(stubValidToken(requestStub), responseSpy);
+    var overview = api.getAll(stubValidToken(requestStub, authUser), responseSpy);
 
     td.verify(responseSpy.send(allLedgerEntriesStub));
   });
 
   it('does not return account balance if token invalid', function() {
-    api.getBalanceFor(stubInvalidToken(requestStub), responseSpy);
+    api.getBalanceFor(stubInvalidToken(requestStub, authUser), responseSpy);
 
     td.verify(responseSpy.sendUnauthorized());
   });
 
   it('gets balance for accountid', function() {
-    var stubbedRequest = stubValidToken(requestStub);
+    var stubbedRequest = stubValidToken(requestStub, authUser);
     td.when(stubbedRequest.idParam()).thenReturn(1);
     td.when(readLedgerTd.balanceOf(1)).thenReturn(100);
 
