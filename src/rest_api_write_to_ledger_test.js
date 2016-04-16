@@ -21,6 +21,6 @@ describe('write to ledger', function() {
   it('moves tokens if authorized', function() {
     api.moveTokens(stubValidToken(requestStub, authUser), responseSpy);
 
-    td.verify(responseSpy.sendUnauthorized(), {times: 0});
+    td.verify(responseSpy.sendOk());
   });
 });

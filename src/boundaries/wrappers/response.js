@@ -10,4 +10,8 @@ Response.prototype.sendUnauthorized = function() {
   this.response.sendStatus(401);
 };
 
+Response.prototype.sendOk = function() {
+  this.response.sendStatus(200);
+};
+
 module.exports = Response;

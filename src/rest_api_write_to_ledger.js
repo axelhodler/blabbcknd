@@ -12,6 +12,8 @@ var unauthorizedResponse = function(res) {
 
 module.exports = {
   moveTokens: function(request, response) {
-    checkTokenValidity(request) ? 'nothing' : unauthorizedResponse(response);
+    checkTokenValidity(request)
+      ? response.sendOk()
+      : unauthorizedResponse(response);
   }
 };
