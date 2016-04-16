@@ -1,4 +1,4 @@
-var readLedger = require('./read_ledger');
+var readLedger = require('./actions/read_ledger');
 var authUser = require('./actions/auth_user');
 
 var checkTokenValidity = function(req) {
