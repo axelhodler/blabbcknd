@@ -9,6 +9,9 @@ var restApiGateway = require('../rest_api_gateway');
 var readLedger = require('../rest_api_read_ledger');
 var writeToLedger = require('../rest_api_write_to_ledger');
 
+var web3setup = require('./web3_setup');
+web3setup.setup();
+
 app.use(bodyParser.json());
 app.use(cors());
 
