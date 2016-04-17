@@ -1,10 +1,10 @@
-var Web3 = require('web3');
+var web3factory = require('./web3factory');
+var contract = require('./contract');
 
 module.exports = {
   setup: function() {
-    var web3 = new Web3();
-    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
-    var metacoinContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"receiver","type":"address"},{"name":"amount","type":"uint256"}],"name":"sendCoin","outputs":[{"name":"sufficient","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"addr","type":"address"}],"name":"getBalance","outputs":[{"name":"","type":"uint256"}],"type":"function"},{"inputs":[],"type":"constructor"}]);
+    var web3 = web3factory.get();
+    var metacoinContract = web3.eth.contract(contract.contract());
     var metacoin = metacoinContract.new(
       {
         from: web3.eth.accounts[0],
@@ -15,7 +15,7 @@ module.exports = {
         if (typeof contract.address != 'undefined') {
           console.log('Contract mined! address: ' + contract.address
             + ' transactionHash: ' + contract.transactionHash
-            + ' owner' + web3.eth.accounts[0]);
+            + ' owner: ' + web3.eth.accounts[0]);
         }
       });
   }
