@@ -5,6 +5,7 @@
   "description": "",
   "devDependencies": {
     "chai": "3.5.0",
+    "ethereumjs-testrpc": "^2.0.3",
     "istanbul": "0.4.3",
     "mocha": "2.4.5",
     "mocha-istanbul": "0.2.0",
