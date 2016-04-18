@@ -1,5 +1,5 @@
-var readLedger = require('./actions/read_ledger');
-var authUser = require('./actions/auth_user');
+var readLedger = require('./../actions/read_ledger');
+var authUser = require('./../actions/auth_user');
 
 var checkTokenValidity = function(req) {
   return authUser.isTokenValid(req.authorizationHeader());

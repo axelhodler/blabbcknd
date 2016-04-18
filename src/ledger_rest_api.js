@@ -2,14 +2,14 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var Request = require('./wrappers/request');
-var Response = require('./wrappers/response');
+var Request = require('./boundaries/wrappers/request');
+var Response = require('./boundaries/wrappers/response');
 
-var restApiGateway = require('../rest_api_gateway');
-var readLedger = require('../rest_api_read_ledger');
-var writeToLedger = require('../rest_api_write_to_ledger');
+var restApiGateway = require('restapi/rest_api_gateway');
+var readLedger = require('restapi/rest_api_read_ledger');
+var writeToLedger = require('restapi/rest_api_write_to_ledger');
 
-var web3setup = require('./web3_setup');
+var web3setup = require('./boundaries/web3_setup');
 web3setup.setup();
 
 app.use(bodyParser.json());

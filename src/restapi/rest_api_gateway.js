@@ -1,4 +1,4 @@
-var authUser = require('./actions/auth_user');
+var authUser = require('./../actions/auth_user');
 
 module.exports = {
   login: function(req, res) {

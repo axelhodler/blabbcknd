@@ -1,8 +1,8 @@
-var Request = require('./boundaries/wrappers/request');
-var Response = require('./boundaries/wrappers/response');
-var authUser = require('./actions/auth_user');
-var writeToLedger = require('./actions/write_to_ledger');
-var accountGateway = require('./boundaries/account_gateway');
+var Request = require('./../boundaries/wrappers/request');
+var Response = require('./../boundaries/wrappers/response');
+var authUser = require('./../actions/auth_user');
+var writeToLedger = require('./../actions/write_to_ledger');
+var accountGateway = require('./../boundaries/account_gateway');
 
 var checkTokenValidity = function(req) {
   return authUser.isTokenValid(req.authorizationHeader());
