@@ -4,3 +4,5 @@ npm-debug.log
 coverage
 html-report/
 contractaddress
+node_modules/secp256k1/build/
+node_modules/sha3/build/
