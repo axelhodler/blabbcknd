@@ -5,9 +5,9 @@ var cors = require('cors');
 var Request = require('./boundaries/wrappers/request');
 var Response = require('./boundaries/wrappers/response');
 
-var restApiGateway = require('restapi/rest_api_gateway');
-var readLedger = require('restapi/rest_api_read_ledger');
-var writeToLedger = require('restapi/rest_api_write_to_ledger');
+var restApiGateway = require('./restapi/rest_api_gateway');
+var readLedger = require('./restapi/rest_api_read_ledger');
+var writeToLedger = require('./restapi/rest_api_write_to_ledger');
 
 var web3setup = require('./boundaries/web3_setup');
 web3setup.setup();
