@@ -2,7 +2,7 @@ var Account = require('../model/account');
 var web3factory = require('./web3factory');
 
 var accounts = function() {
-  web3factory.get().eth.accounts.map(function(address, index) {
+  return web3factory.get().eth.accounts.map(function(address, index) {
     return new Account(index, 'mail' + index + '@test.com', 'pw' + index, address);
   });
 };
