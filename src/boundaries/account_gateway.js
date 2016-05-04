@@ -14,6 +14,11 @@ var accounts = function() {
 };
 
 module.exports = {
+  fetchOwnerOf: function(etherAddress) {
+    return accounts().filter(function(account) {
+      return account.getEtherAddress() === etherAddress;
+    })[0].getFullName();
+  },
   fetchAllEtherAddresses: function() {
     return accounts().map(function(account) {
       return account.getEtherAddress();

@@ -1,4 +1,5 @@
 var LedgerEntry = require('./../model/ledger_entry');
+var Ownership = require('./../model/ownership');
 var ethereumGateway = require('./../boundaries/ethereum_gateway');
 var accountGateway = require('./../boundaries/account_gateway');
 
@@ -11,7 +12,7 @@ module.exports = {
   },
   allBalances: function() {
     return accountGateway.fetchAllEtherAddresses().map(function(accountId) {
-      return buildLedgerEntry(accountId);
+      return new Ownership(buildLedgerEntry(accountId), accountGateway.fetchOwnerOf(accountId));
     });
   }
 };
