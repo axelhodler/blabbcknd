@@ -7,4 +7,14 @@ describe('Write to ledger', function() {
 
     td.verify(ethereumGatewayTd.moveTokens('fromEtherAddress', 'toEtherAddress', 100));
   });
+
+  it('can destroy tokens', function() {
+    writeToLedger.destroyTokens('fromEtherAddress', 100);
+
+    td.verify(ethereumGatewayTd.moveTokens(
+      'fromEtherAddress',
+      '0x0000000000000000000000000000000000000000',
+      100
+    ));
+  });
 });
