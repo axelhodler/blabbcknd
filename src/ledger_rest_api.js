@@ -8,6 +8,7 @@ var Response = require('./boundaries/wrappers/response');
 var restApiGateway = require('./restapi/rest_api_gateway');
 var readLedger = require('./restapi/rest_api_read_ledger');
 var writeToLedger = require('./restapi/rest_api_write_to_ledger');
+var exchangeTokens = require('./restapi/rest_api_exchange_tokens');
 
 var web3setup = require('./boundaries/web3_setup');
 web3setup.setup();
@@ -29,6 +30,10 @@ app.post('/auth', function(req, res) {
 
 app.post('/transactions', function(req, res) {
   writeToLedger.moveTokens(new Request(req), new Response(res));
+});
+
+app.post('/exchange', function(req, res) {
+  exchangeTokens.toEuro(req, res);
 });
 
 app.listen(3000, function () {
