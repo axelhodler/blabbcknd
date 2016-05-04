@@ -2,14 +2,28 @@ var faker = require('faker');
 var Account = require('../model/account');
 var web3factory = require('./web3factory');
 
-var accounts = function() {
-  return web3factory.get().eth.accounts.map(function(ethereumAddress, index) {
+var stubbedNames = [
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName(),
+  faker.name.findName()
+];
+
+var accounts = function () {
+  return web3factory.get().eth.accounts.map(function (ethereumAddress, index) {
     return new Account(
       index,
       'mail' + index + '@test.com',
       'pw' + index,
       ethereumAddress,
-      faker.name.findName());
+      stubbedNames[index]
+    )
   });
 };
 
