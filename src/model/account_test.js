@@ -19,6 +19,12 @@ describe('account', function() {
     expect(acc.getEtherAddress()).to.equal('address');
   });
 
+  it('has a fullname', function() {
+    var acc = new Account(1, 'irrelevant', 'irrelevant', 'address', 'Horus Lupercal');
+
+    expect(acc.getFullName()).to.equal('Horus Lupercal');
+  });
+
   describe('knows', function() {
     var acc = new Account(1, 'irrelevant', 'secret');
 
