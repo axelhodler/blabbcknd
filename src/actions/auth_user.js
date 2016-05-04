@@ -3,8 +3,9 @@ var tokenProvider = require('./../boundaries/token_provider');
 
 module.exports = {
   login: function(email, password) {
-    if (accountGateway.fetchAccountByEmail(email).passwordMatches(password)) {
-      return tokenProvider.sign(email);
+    var account = accountGateway.fetchAccountByEmail(email);
+    if (account.passwordMatches(password)) {
+      return tokenProvider.sign({mail: email, fullName: account.getFullName()});
     }
   },
   isTokenValid: function(token) {
@@ -16,6 +17,6 @@ module.exports = {
     }
   },
   mailInDecoded: function(token) {
-    return tokenProvider.verifiedContent(token);
+    return tokenProvider.verifiedContent(token).mail;
   }
 };

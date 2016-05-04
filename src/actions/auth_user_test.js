@@ -6,15 +6,19 @@ var Account = require('./../model/account');
 describe('auth user', function() {
 
   describe('login', function() {
-    var stubPersistedAccount = function(email, password) {
-      var accountStub = new Account(1, email, password);
+    var stubPersistedAccount = function(email, password, fullName) {
+      var accountStub = new Account(1, email, password, '', fullName);
       td.when(accountGateway.fetchAccountByEmail(email)).thenReturn(accountStub);
     };
 
     it('returns token if credentials are valid', function() {
       var EMAIL = 'email@host.io';
-      stubPersistedAccount(EMAIL, 'password');
-      td.when(tokenProvider.sign(EMAIL)).thenReturn('validToken');
+      stubPersistedAccount(EMAIL, 'password', 'peter');
+      var payload = {
+        mail: EMAIL,
+        fullName: 'peter'
+      };
+      td.when(tokenProvider.sign(payload)).thenReturn('validToken');
 
       var token = authUser.login(EMAIL, 'password');
 
@@ -23,8 +27,12 @@ describe('auth user', function() {
 
     it('returns token if credentials are valid - triangulation', function() {
       var EMAIL = 'foo@bar.io';
-      stubPersistedAccount(EMAIL, 'pw');
-      td.when(tokenProvider.sign(EMAIL)).thenReturn('aValidToken');
+      stubPersistedAccount(EMAIL, 'pw', 'mary');
+      var payload = {
+        mail: EMAIL,
+        fullName: 'mary'
+      };
+      td.when(tokenProvider.sign(payload)).thenReturn('aValidToken');
 
       var token = authUser.login(EMAIL, 'pw');
 
@@ -33,7 +41,7 @@ describe('auth user', function() {
 
     it('does not return a token for invalid credentials', function() {
       var EMAIL = 'email@host.io';
-      stubPersistedAccount(EMAIL, 'correctPassword');
+      stubPersistedAccount(EMAIL, 'correctPassword', 'paul');
 
       var token = authUser.login(EMAIL, 'incorrectPassword');
 
@@ -63,7 +71,11 @@ describe('auth user', function() {
   describe('token payload', function(){
     it('mail can be accessed', function() {
       td.when(tokenProvider.verifiedContent('token'))
-        .thenReturn('mailInDecoded@mailInDecoded.com', 'mail2@mail2.com');
+        .thenReturn({
+          mail: 'mailInDecoded@mailInDecoded.com'
+        }, {
+          mail: 'mail2@mail2.com'
+        });
 
       var firstAuthenticatedUserMail = authUser.mailInDecoded('token');
       var secondAuthenticatedUserMail = authUser.mailInDecoded('token');
