@@ -5,6 +5,7 @@ var readLedger = require('./read_ledger');
 describe('ledger gateway', function() {
   it('provides balance for an account id', function() {
     td.when(accountGateway.fetchEthereumAddressFor('accountId')).thenReturn('ethereumAddress');
+    td.when(accountGateway.fetchOwnerOf('ethereumAddress')).thenReturn('Felicitas Jebediah');
     td.when(ethereumGatewayTd.balanceOf('ethereumAddress')).thenReturn(1000);
 
     var ledgerEntry = readLedger.balanceOf('accountId');
@@ -23,8 +24,8 @@ describe('ledger gateway', function() {
     var ledgerEntries = readLedger.allBalances();
 
     expect(ledgerEntries.length).to.equal(2);
-    expect(ledgerEntries[0].getTokenAmount()).to.equal(28);
-    expect(ledgerEntries[1].getTokenAmount()).to.equal(36);
+    expect(ledgerEntries[0].tokenAmount).to.equal(28);
+    expect(ledgerEntries[1].tokenAmount).to.equal(36);
     expect(ledgerEntries[0].owner).to.equal('Long John');
     expect(ledgerEntries[1].owner).to.equal('Stumped Stef');
   });

@@ -4,8 +4,4 @@ function Ownership(ledgerEntry, owner) {
   this.owner = owner;
 }
 
-Ownership.prototype.getTokenAmount = function() {
-  return this.tokenAmount;
-};
-
 module.exports = Ownership;
