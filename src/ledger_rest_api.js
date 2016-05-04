@@ -33,7 +33,7 @@ app.post('/transactions', function(req, res) {
 });
 
 app.post('/exchange', function(req, res) {
-  exchangeTokens.toEuro(req, res);
+  exchangeTokens.toEuro(new Request(req), new Response(res));
 });
 
 app.listen(3000, function () {
