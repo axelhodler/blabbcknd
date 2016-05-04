@@ -6,9 +6,14 @@ var accountGateway = require('./../boundaries/account_gateway');
 var buildLedgerEntry = function(accountId) {
   return new LedgerEntry(accountId, ethereumGateway.balanceOf(accountId));
 };
+
 module.exports = {
   balanceOf: function(accountId) {
-    return buildLedgerEntry(accountGateway.fetchEthereumAddressFor(accountId));
+    var ethereumAddress = accountGateway.fetchEthereumAddressFor(accountId);
+    return new Ownership(
+      buildLedgerEntry(ethereumAddress),
+      accountGateway.fetchOwnerOf(ethereumAddress)
+    );
   },
   allBalances: function() {
     return accountGateway.fetchAllEtherAddresses().map(function(accountId) {

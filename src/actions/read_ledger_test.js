@@ -8,10 +8,11 @@ describe('ledger gateway', function() {
     td.when(accountGateway.fetchOwnerOf('ethereumAddress')).thenReturn('Felicitas Jebediah');
     td.when(ethereumGatewayTd.balanceOf('ethereumAddress')).thenReturn(1000);
 
-    var ledgerEntry = readLedger.balanceOf('accountId');
+    var ownership = readLedger.balanceOf('accountId');
 
-    expect(ledgerEntry.getEthereumAddress()).to.equal('ethereumAddress');
-    expect(ledgerEntry.getTokenAmount()).to.equal(1000);
+    expect(ownership.owner).to.equal('Felicitas Jebediah');
+    expect(ownership.ethereumAddress).to.equal('ethereumAddress');
+    expect(ownership.tokenAmount).to.equal(1000);
   });
 
   it('provides list of all ledgers', function() {
@@ -21,12 +22,12 @@ describe('ledger gateway', function() {
     td.when(ethereumGatewayTd.balanceOf('firstAddress')).thenReturn(28);
     td.when(ethereumGatewayTd.balanceOf('secondAddress')).thenReturn(36);
 
-    var ledgerEntries = readLedger.allBalances();
+    var ownership = readLedger.allBalances();
 
-    expect(ledgerEntries.length).to.equal(2);
-    expect(ledgerEntries[0].tokenAmount).to.equal(28);
-    expect(ledgerEntries[1].tokenAmount).to.equal(36);
-    expect(ledgerEntries[0].owner).to.equal('Long John');
-    expect(ledgerEntries[1].owner).to.equal('Stumped Stef');
+    expect(ownership.length).to.equal(2);
+    expect(ownership[0].tokenAmount).to.equal(28);
+    expect(ownership[1].tokenAmount).to.equal(36);
+    expect(ownership[0].owner).to.equal('Long John');
+    expect(ownership[1].owner).to.equal('Stumped Stef');
   });
 });
