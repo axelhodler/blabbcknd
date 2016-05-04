@@ -4,6 +4,6 @@ module.exports = {
   toEuro: function(request, response) {
     writeToLedger.destroyTokens(request.body().recipient, request.body().amount);
 
-    return response;
+    return response.sendOk();
   }
 };
