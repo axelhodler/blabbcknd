@@ -10,5 +10,8 @@ module.exports = {
   // will throw if token invalid
   verifiedContent: function(token) {
     return jwt.verify(token, secret);
+  },
+  getSecret: function() {
+    return secret;
   }
 };

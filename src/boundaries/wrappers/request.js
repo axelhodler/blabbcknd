@@ -14,4 +14,8 @@ Request.prototype.body = function() {
   return this.request.body;
 };
 
+Request.prototype.user = function() {
+  return this.request.user;
+};
+
 module.exports = Request;
