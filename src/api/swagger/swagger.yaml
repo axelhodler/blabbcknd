@@ -18,6 +18,8 @@ paths:
     post:
       description: todo
       operationId: login
+      tags:
+        - auth
       responses:
         "200":
           description: Success
@@ -34,6 +36,8 @@ paths:
     get:
       description: todo
       operationId: getAll
+      tags:
+        - ledgers
       responses:
         "200":
           description: Success
@@ -56,6 +60,8 @@ paths:
           description: foo
           required: true
           type: string
+      tags:
+        - ledgers
       responses:
         "200":
           description: Success
@@ -72,6 +78,8 @@ paths:
     post:
       description: asdf
       operationId: moveTokens
+      tags:
+        - transactions
       responses:
         "201":
           description: Success
@@ -88,6 +96,8 @@ paths:
     post:
       description: asdf
       operationId: toEuro
+      tags:
+        - exchange
       responses:
         "201":
           description: Success
