@@ -60,11 +60,6 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/DefaultSuccessResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /ledgers/{id}:
     x-swagger-router-controller: request_router
     get:
@@ -85,11 +80,6 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/DefaultSuccessResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /transactions:
     x-swagger-router-controller: request_router
     post:
@@ -119,11 +109,6 @@ paths:
           schema:
             # a pointer to a definition
             $ref: "#/definitions/DefaultSuccessResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /exchange:
     x-swagger-router-controller: request_router
     post:
@@ -152,21 +137,11 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/DefaultSuccessResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
   DefaultSuccessResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
-  ErrorResponse:
     required:
       - message
     properties:
