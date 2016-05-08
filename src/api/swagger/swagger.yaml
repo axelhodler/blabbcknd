@@ -16,21 +16,35 @@ paths:
   /auth:
     x-swagger-router-controller: request_router
     post:
-      description: todo
+      description: Responds with json web token (JWT) to be used for subsequent requests
+      produces:
+        - text/plain
       operationId: login
       tags:
         - auth
+      parameters:
+        -
+          name: Credentials
+          in: body
+          description: Credentials to receive JWT
+          required: true
+          schema:
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+                format: password
       responses:
         "200":
           description: Success
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/DefaultSuccessResponse"
-        # responses may fall through to errors
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+            type: string
   /ledgers:
     x-swagger-router-controller: request_router
     get:
