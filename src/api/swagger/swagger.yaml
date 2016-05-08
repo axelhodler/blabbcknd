@@ -78,8 +78,7 @@ paths:
         "200":
           description: Success
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/DefaultSuccessResponse"
+            $ref: "#/definitions/LedgerEntry"
   /transactions:
     x-swagger-router-controller: request_router
     post:
@@ -146,6 +145,14 @@ definitions:
       - message
     properties:
       message:
+        type: string
+  LedgerEntry:
+    properties:
+      ethereumAddress:
+        type: string
+      tokenAmount:
+        type: number
+      owner:
         type: string
 parameters:
   jwtheader:
