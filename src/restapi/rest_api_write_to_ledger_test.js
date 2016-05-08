@@ -15,13 +15,7 @@ describe('write to ledger', function() {
     responseSpy = td.object(Response);
   });
 
-  it('is not allowed for guests', function() {
-    api.moveTokens(stubInvalidToken(requestStub, authUser), responseSpy);
-
-    td.verify(responseSpy.sendUnauthorized());
-  });
-
-  it('moves tokens if authorized', function() {
+  it('moves tokens', function() {
     td.when(authUser.mailInDecoded('validToken')).thenReturn('mail@mail.com');
     var stubbedAccount = new Account(1, 'mail@mail.com', 'irrelevant', 'fromEtherAddr');
     td.when(accountGateway.fetchAccountByEmail('mail@mail.com')).thenReturn(stubbedAccount);
