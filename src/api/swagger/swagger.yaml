@@ -48,7 +48,7 @@ paths:
   /ledgers:
     x-swagger-router-controller: request_router
     get:
-      description: todo
+      description: Get balance of all accounts
       operationId: getAll
       tags:
         - ledgers
@@ -68,12 +68,13 @@ paths:
   /ledgers/{id}:
     x-swagger-router-controller: request_router
     get:
-      description: todo
+      description: Get balance for single account
       operationId: getBalanceFor
       parameters:
+        - $ref: "#/parameters/jwtheader"
         - name: id
           in: path
-          description: foo
+          description: account id
           required: true
           type: string
       tags:
@@ -92,10 +93,26 @@ paths:
   /transactions:
     x-swagger-router-controller: request_router
     post:
-      description: asdf
+      description: Moves tokens from current user to specified account
       operationId: moveTokens
       tags:
         - transactions
+      parameters:
+        - $ref: "#/parameters/jwtheader"
+        - name: transaction
+          in: body
+          description: recipient and amount
+          required: true
+          schema:
+            type: object
+            required:
+              - to
+              - amount
+            properties:
+              to:
+                type: string
+              amount:
+                type: number
       responses:
         "201":
           description: Success
@@ -110,10 +127,26 @@ paths:
   /exchange:
     x-swagger-router-controller: request_router
     post:
-      description: asdf
+      description: exchange blab to euro
       operationId: toEuro
       tags:
         - exchange
+      parameters:
+        - $ref: "#/parameters/jwtheader"
+        - name: exchange
+          in: body
+          description: amount to exchange to euro
+          required: true
+          schema:
+            type: object
+            required:
+              - amount
+              - recipient
+            properties:
+              amount:
+                type: number
+              recipient:
+                type: string
       responses:
         "201":
           description: Success
