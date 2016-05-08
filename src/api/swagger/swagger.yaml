@@ -52,6 +52,8 @@ paths:
       operationId: getAll
       tags:
         - ledgers
+      parameters:
+        - $ref: "#/parameters/jwtheader"
       responses:
         "200":
           description: Success
@@ -137,3 +139,10 @@ definitions:
     properties:
       message:
         type: string
+parameters:
+  jwtheader:
+    name: Authorization
+    in: header
+    description: json web token
+    required: true
+    type: string
