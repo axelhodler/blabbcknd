@@ -106,9 +106,6 @@ paths:
       responses:
         "201":
           description: Success
-          schema:
-            # a pointer to a definition
-            $ref: "#/definitions/DefaultSuccessResponse"
   /exchange:
     x-swagger-router-controller: request_router
     post:
@@ -135,18 +132,10 @@ paths:
       responses:
         "201":
           description: Success
-          schema:
-            $ref: "#/definitions/DefaultSuccessResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  DefaultSuccessResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
   LedgerEntry:
     properties:
       ethereumAddress:
