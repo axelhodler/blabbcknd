@@ -11,15 +11,15 @@ var web3setup = require('./boundaries/web3_setup');
 web3setup.setup();
 
 var AUTHORIZATION_PATH = '/auth';
-
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/docs', express.static('swagger-ui'));
 app.use(jwt({
   secret: tokenProvider.getSecret(),
   getToken: function fromHeader (req) {
     var authorizationHeader = req.get('Authorization');
     return authorizationHeader ? authorizationHeader : null;
-  }}).unless({path: [AUTHORIZATION_PATH, '/swagger']}));
+  }}).unless({path: [AUTHORIZATION_PATH, '/swagger', '/docs']}));
 
 var config = {
   appRoot: __dirname // required config
