@@ -12,7 +12,7 @@
     "testdouble": "1.4.1"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha src/testhelpers/** src/**/*",
+    "test": "./node_modules/mocha/bin/mocha src/testhelpers/*.js src/**/*.js",
     "coverage": "./node_modules/istanbul/lib/cli.js cover _mocha src/testhelpers/** src/**/*",
     "start": "./node_modules/ethereumjs-testrpc/bin/testrpc -p 8545 & sleep 2 && node src/ledger_rest_api.js && kill %1",
     "postinstall": "npm rebuild"
