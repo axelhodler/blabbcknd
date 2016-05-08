@@ -1,0 +1,115 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Blab
+host: localhost:3000
+basePath: /
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /auth:
+    x-swagger-router-controller: request_router
+    post:
+      description: todo
+      operationId: login
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/DefaultSuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /ledgers:
+    x-swagger-router-controller: request_router
+    get:
+      description: todo
+      operationId: getAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/DefaultSuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /ledgers/{id}:
+    x-swagger-router-controller: request_router
+    get:
+      description: todo
+      operationId: getBalanceFor
+      parameters:
+        - name: id
+          in: path
+          description: foo
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/DefaultSuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /transactions:
+    x-swagger-router-controller: request_router
+    post:
+      description: asdf
+      operationId: moveTokens
+      responses:
+        "201":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/DefaultSuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /exchange:
+    x-swagger-router-controller: request_router
+    post:
+      description: asdf
+      operationId: toEuro
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: "#/definitions/DefaultSuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  DefaultSuccessResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
