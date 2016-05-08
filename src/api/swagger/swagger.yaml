@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Blab
-host: localhost:3000
+host: gkapi.hodler.co:3000
 basePath: /
 schemes:
   # tip: remove http to make production-grade
