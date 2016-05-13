@@ -1,7 +1,7 @@
 global.expect = require('chai').expect;
 global.td = require('testdouble');
 
-afterEach(function() {
+beforeEach(function() {
   td.reset();
 });
 

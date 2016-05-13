@@ -1,9 +1,18 @@
-var accountGateway = td.replace('./../boundaries/account_gateway');
-var tokenProvider = td.replace('./../boundaries/token_provider');
-var authUser = require('./auth_user');
-var Account = require('./../model/account');
 
 describe('auth user', function() {
+
+  var accountGateway;
+  var tokenProvider;
+  var authUser;
+  var Account;
+
+  beforeEach(function() {
+    accountGateway = td.replace('./../boundaries/account_gateway');
+    tokenProvider = td.replace('./../boundaries/token_provider');
+
+    authUser = require('./auth_user');
+    Account = require('./../model/account');
+  });
 
   describe('login', function() {
     var stubPersistedAccount = function(email, password, fullName) {
