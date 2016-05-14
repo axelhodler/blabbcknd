@@ -1,1 +1,1 @@
-require('./boundaries/ledger_rest_api').start();
+require('./boundaries/delivery/ledger_rest_api').start();

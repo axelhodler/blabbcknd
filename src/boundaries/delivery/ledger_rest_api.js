@@ -1,6 +1,6 @@
 var express = require('express');
 var jwt = require('express-jwt');
-var tokenSecret = require('./tokensecret');
+var tokenSecret = require('./../tokensecret');
 var SwaggerExpress = require('swagger-express-mw');
 
 var app = express();
@@ -10,7 +10,7 @@ var process = require('process');
 
 module.exports = {
   start: function() {
-    var web3setup = require('./blockchain/web3_setup');
+    var web3setup = require('./../blockchain/web3_setup');
     web3setup.setup();
 
     var useTokenInAuthorizationHeader = function fromHeader (req) {
