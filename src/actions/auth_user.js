@@ -1,4 +1,4 @@
-var accountGateway = require('./../boundaries/account_gateway');
+var accountGateway = require('./../boundaries/database/account_gateway');
 var tokenProvider = require('./../boundaries/token_provider');
 
 module.exports = {

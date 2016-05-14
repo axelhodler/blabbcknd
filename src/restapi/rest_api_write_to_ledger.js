@@ -1,6 +1,6 @@
 var authUser = require('./../actions/auth_user');
 var writeToLedger = require('./../actions/write_to_ledger');
-var accountGateway = require('./../boundaries/account_gateway');
+var accountGateway = require('./../boundaries/database/account_gateway');
 
 var moveTokens = function(req, res) {
   writeToLedger.moveTokens(

@@ -1,5 +1,5 @@
 var authUser = td.replace('./../actions/auth_user');
-var accountGateway = td.replace('./../boundaries/account_gateway');
+var accountGateway = td.replace('./../boundaries/database/account_gateway');
 var writeToLedger = td.replace('./../actions/write_to_ledger');
 var api = require('./rest_api_write_to_ledger');
 var Request = require('./../boundaries/wrappers/request');
