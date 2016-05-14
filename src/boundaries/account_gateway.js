@@ -38,11 +38,6 @@ module.exports = {
       return account.getEtherAddress();
     });
   },
-  fetchEthereumAddressFor: function(accountId) {
-    return accounts().filter(function(account) {
-      return account.getId() === parseInt(accountId);
-    })[0].getEtherAddress();
-  },
   fetchAccountByEmail: function(email) {
     return accounts().filter(function(account) {
       return account.getEmail() === email;
