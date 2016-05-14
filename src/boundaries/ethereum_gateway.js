@@ -1,4 +1,4 @@
-var contract = require('./contract').getContract();
+var contract = require('./contract')();
 
 module.exports = {
   balanceOf: function(address) {

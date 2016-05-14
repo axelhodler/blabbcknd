@@ -1,10 +1,10 @@
 var blockchain = require('./chainaccess').get();
-var contract = require('./contract');
+var contract = require('./contractfields');
 var fs = require('fs');
 
 module.exports = {
   setup: function() {
-    var metacoinContract = blockchain.eth.contract(contract.contract());
+    var metacoinContract = blockchain.eth.contract(contract);
     metacoinContract.new(
       {
         from: blockchain.eth.accounts[0],
