@@ -1,6 +1,5 @@
 var express = require('express');
 var jwt = require('express-jwt');
-var tokenProvider = require('./boundaries/token_provider');
 var tokenSecret = require('./boundaries/tokensecret');
 var SwaggerExpress = require('swagger-express-mw');
 
