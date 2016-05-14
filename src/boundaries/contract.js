@@ -1,5 +1,5 @@
 var fs = require('fs');
-var blockchain = require('./chainaccess').get();
+var blockchain = require('./chainaccess');
 var contractFields = require('./contractfields');
 
 module.exports = function() {

@@ -1,4 +1,4 @@
-var blockchain = require('./chainaccess').get();
+var blockchain = require('./chainaccess');
 var contract = require('./contractfields');
 var fs = require('fs');
 

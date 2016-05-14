@@ -1,6 +1,6 @@
 var faker = require('faker');
 var Account = require('../model/account');
-var blockchain = require('./chainaccess').get();
+var blockchain = require('./chainaccess');
 
 var stubbedNames = [
   faker.name.findName(),
