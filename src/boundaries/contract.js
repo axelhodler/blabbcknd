@@ -1,4 +1,4 @@
-var web3factory = require('./web3factory').init();
+var blockchain = require('./chainaccess').get();
 var fs = require('fs');
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
   },
   getContract: function() {
     var address = fs.readFileSync('contractaddress', 'utf8');
-    var contract = web3factory.get().eth.contract(this.contract());
-    return web3factory.get().eth.contract(contract.abi).at(address);
+    var contract = blockchain.eth.contract(this.contract());
+    return blockchain.eth.contract(contract.abi).at(address);
   }
 };

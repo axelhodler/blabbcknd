@@ -1,6 +1,6 @@
 var faker = require('faker');
 var Account = require('../model/account');
-var web3factory = require('./web3factory').init();
+var blockchain = require('./chainaccess').get();
 
 var stubbedNames = [
   faker.name.findName(),
@@ -16,7 +16,7 @@ var stubbedNames = [
 ];
 
 var accounts = function () {
-  return web3factory.get().eth.accounts.map(function (ethereumAddress, index) {
+  return blockchain.eth.accounts.map(function (ethereumAddress, index) {
     return new Account(
       index,
       'mail' + index + '@test.com',
