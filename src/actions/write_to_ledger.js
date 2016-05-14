@@ -1,4 +1,4 @@
-var ethereumGateway = require('./../boundaries/ethereum_gateway');
+var ethereumGateway = require('./../boundaries/blockchain/ethereum_gateway');
 
 module.exports = {
   moveTokens: function(from, to, amount) {

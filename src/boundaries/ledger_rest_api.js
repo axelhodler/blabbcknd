@@ -10,7 +10,7 @@ var process = require('process');
 
 module.exports = {
   start: function() {
-    var web3setup = require('./web3_setup');
+    var web3setup = require('./blockchain/web3_setup');
     web3setup.setup();
 
     var useTokenInAuthorizationHeader = function fromHeader (req) {

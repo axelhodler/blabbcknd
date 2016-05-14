@@ -1,4 +1,4 @@
-var ethereumGatewayTd = td.replace('./../boundaries/ethereum_gateway');
+var ethereumGatewayTd = td.replace('./../boundaries/blockchain/ethereum_gateway');
 var writeToLedger = require('./write_to_ledger');
 
 describe('Write to ledger', function() {

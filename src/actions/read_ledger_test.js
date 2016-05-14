@@ -1,4 +1,4 @@
-var ethereumGatewayTd = td.replace('./../boundaries/ethereum_gateway');
+var ethereumGatewayTd = td.replace('./../boundaries/blockchain/ethereum_gateway');
 var accountGateway = td.replace('./../boundaries/account_gateway');
 var readLedger = require('./read_ledger');
 
