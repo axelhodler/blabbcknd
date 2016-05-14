@@ -10,16 +10,21 @@ var cors = require('cors');
 var web3setup = require('./boundaries/web3_setup');
 web3setup.setup();
 
+var useTokenInAuthorizationHeader = function fromHeader (req) {
+  var authorizationHeader = req.get('Authorization');
+  return authorizationHeader ? authorizationHeader : null;
+};
+
 var AUTHORIZATION_PATH = '/auth';
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/docs', express.static('swagger-ui'));
-app.use(jwt({
-  secret: tokenSecret.get(),
-  getToken: function fromHeader (req) {
-    var authorizationHeader = req.get('Authorization');
-    return authorizationHeader ? authorizationHeader : null;
-  }}).unless({path: [AUTHORIZATION_PATH, '/swagger', '/docs']}));
+app.use(jwt(
+  {
+    secret: tokenSecret.get(),
+    getToken: useTokenInAuthorizationHeader
+  }
+).unless({path: [AUTHORIZATION_PATH, '/swagger', '/docs']}));
 
 var config = {
   appRoot: __dirname // required config
