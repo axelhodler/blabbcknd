@@ -1,4 +1,4 @@
-var web3factory = require('./web3factory');
+var web3factory = require('./web3factory').init();
 var contract = require('./contract');
 var fs = require('fs');
 

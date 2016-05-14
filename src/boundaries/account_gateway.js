@@ -1,6 +1,6 @@
 var faker = require('faker');
 var Account = require('../model/account');
-var web3factory = require('./web3factory');
+var web3factory = require('./web3factory').init();
 
 var stubbedNames = [
   faker.name.findName(),

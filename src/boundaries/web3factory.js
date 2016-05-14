@@ -1,9 +1,12 @@
 var Web3 = require('web3');
 
 module.exports = {
+  init: function() {
+    this.web3 = new Web3();
+    this.web3.setProvider(new this.web3.providers.HttpProvider('http://localhost:8545'));
+    return this;
+  },
   get: function() {
-    var web3 = new Web3();
-    web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
-    return web3;
+    return this.web3;
   }
 };
