@@ -8,7 +8,7 @@ describe('auth user', function() {
 
   beforeEach(function() {
     accountGateway = td.replace('./../boundaries/database/account_gateway');
-    tokenProvider = td.replace('./../boundaries/token_provider');
+    tokenProvider = td.replace('./../boundaries/security/token_provider');
 
     authUser = require('./auth_user');
     Account = require('./../model/account');
