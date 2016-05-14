@@ -1,6 +1,7 @@
 var express = require('express');
 var jwt = require('express-jwt');
 var tokenProvider = require('./boundaries/token_provider');
+var tokenSecret = require('./boundaries/tokensecret');
 var SwaggerExpress = require('swagger-express-mw');
 
 var app = express();
@@ -15,7 +16,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/docs', express.static('swagger-ui'));
 app.use(jwt({
-  secret: tokenProvider.getSecret(),
+  secret: tokenSecret.get(),
   getToken: function fromHeader (req) {
     var authorizationHeader = req.get('Authorization');
     return authorizationHeader ? authorizationHeader : null;

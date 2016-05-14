@@ -12,8 +12,4 @@ describe('TokenProvider', function() {
 
     expect(tokenProvider.verifiedContent(token)).to.equal(payload);
   });
-
-  it('provides the secret', function() {
-    expect(tokenProvider.getSecret()).to.equal('secret');
-  });
 });
