@@ -24,6 +24,7 @@
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/testhelpers/*.js src/**/*.js src/**/**/*.js",
+    "specs": "./node_modules/ethereumjs-testrpc/bin/testrpc -p 8545 & sleep 2 && ./node_modules/mocha/bin/mocha src/testhelpers/*.js specs/*.js || : && kill %1",
     "coverage": "./node_modules/istanbul/lib/cli.js cover --config configs/istanbul.yml _mocha src/testhelpers/** src/**/*.js src/**/**/*.js",
     "start": "./node_modules/ethereumjs-testrpc/bin/testrpc -p 8545 & sleep 2 && node src/app.js || : && kill %1",
     "postinstall": "npm rebuild"
