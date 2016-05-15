@@ -5,6 +5,8 @@ describe('Rest API', function () {
   var token;
 
   it('receives token with valid credentials', function (done) {
+    this.timeout(4000);
+    setTimeout(function(){
     request(server)
       .post('/auth')
       .send(
@@ -17,8 +19,10 @@ describe('Rest API', function () {
       .end(function(error, response) {
         token = response.text;
         expect(token).to.contain('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9');
+        setTimeout(done, 4000);
         done();
       });
+    }, 3000);
   });
 
   var accountId,
