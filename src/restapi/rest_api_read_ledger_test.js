@@ -1,8 +1,8 @@
 var readLedgerTd = td.replace('./../actions/read_ledger');
 var api = require('./rest_api_read_ledger');
 var LedgerEntry = require('./../model/ledger_entry');
-var Request = require('./../boundaries/wrappers/request');
-var Response = require('./../boundaries/wrappers/response');
+var Request = require('./../boundaries/delivery/request_wrapper');
+var Response = require('./../boundaries/delivery/response_wrapper');
 
 describe('ledger', function() {
   var responseSpy,

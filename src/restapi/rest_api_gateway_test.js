@@ -1,7 +1,7 @@
 var authUser = td.replace('./../actions/auth_user');
 var api = require('./rest_api_gateway');
-var Request = require('./../boundaries/wrappers/request');
-var Response = require('./../boundaries/wrappers/response');
+var Request = require('./../boundaries/delivery/request_wrapper');
+var Response = require('./../boundaries/delivery/response_wrapper');
 
 describe('rest api gateway', function() {
   var responseSpy,

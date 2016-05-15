@@ -1,5 +1,5 @@
-var Request = require('./../boundaries/wrappers/request');
-var Response = require('./../boundaries/wrappers/response');
+var Request = require('./../boundaries/delivery/request_wrapper');
+var Response = require('./../boundaries/delivery/response_wrapper');
 
 var restApiGateway = require('./rest_api_gateway');
 var readLedger = require('./rest_api_read_ledger');

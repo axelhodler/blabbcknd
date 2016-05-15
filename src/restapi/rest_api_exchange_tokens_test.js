@@ -2,8 +2,8 @@ var writeToLedger = td.replace('./../actions/write_to_ledger');
 
 var exchangeTokens = require('./rest_api_exchange_tokens');
 
-var Request = require('./../boundaries/wrappers/request');
-var Response = require('./../boundaries/wrappers/response');
+var Request = require('./../boundaries/delivery/request_wrapper');
+var Response = require('./../boundaries/delivery/response_wrapper');
 
 describe('Rest API exchange tokens', function() {
   var requestStub,
