@@ -1,13 +1,18 @@
 var request = require('supertest');
-require('../src/boundaries/blockchain/web3_setup')();
+
 var server = require('../src/boundaries/delivery/ledger_rest_api').start();
 
 describe('Rest API', function () {
   var token;
 
-  it('receives token with valid credentials', function (done) {
+  before(function(done) {
     this.timeout(4000);
-    setTimeout(function(){
+    require('../src/boundaries/blockchain/web3_setup')().then(function() {
+      done();
+    });
+  });
+
+  it('receives token with valid credentials', function (done) {
     request(server)
       .post('/auth')
       .send(
@@ -21,8 +26,7 @@ describe('Rest API', function () {
         token = response.text;
         expect(token).to.contain('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9');
         done();
-      });
-    }, 3000);
+    });
   });
 
   var accountId,
