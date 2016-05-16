@@ -20,7 +20,6 @@ describe('Rest API', function () {
       .end(function(error, response) {
         token = response.text;
         expect(token).to.contain('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9');
-        setTimeout(done, 4000);
         done();
       });
     }, 3000);
@@ -39,7 +38,6 @@ describe('Rest API', function () {
         accountId = response.body[0].ethereumAddress;
         expectedAmount = response.body[0].tokenAmount;
         expect(response.body.length).to.equal(10);
-        setTimeout(done, 5000);
         done();
       });
   });
