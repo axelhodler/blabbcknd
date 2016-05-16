@@ -29,7 +29,8 @@ describe('Rest API', function () {
     });
   });
 
-  var ownerAccountId;
+  var ownerAccountId,
+    secondAccountId;
 
   it('can read all ledger entries', function(done) {
     this.timeout(5000);
@@ -39,7 +40,41 @@ describe('Rest API', function () {
       .expect(200)
       .end(function(error, response) {
         ownerAccountId = response.body[0].ethereumAddress;
+        secondAccountId = response.body[1].ethereumAddress;
+        expect(response.body[0].tokenAmount).to.equal('10000');
         expect(response.body.length).to.equal(10);
+        done();
+      });
+  });
+
+  it('can send tokens from one account to another', function(done) {
+    request(server)
+      .post('/transactions')
+      .set('Authorization', token)
+      .send(
+        {
+          to: secondAccountId,
+          amount: 5000
+        }
+      )
+      .expect(201)
+      .end(function (error, response) {
+        done();
+      });
+  });
+
+  it('tokens can be exchanged to euros', function(done) {
+    request(server)
+      .post('/exchange')
+      .set('Authorization', token)
+      .send(
+        {
+          amount: 50,
+          recipient: ownerAccountId
+        }
+      )
+      .expect(201)
+      .end(function (error, response) {
         done();
       });
   });
@@ -50,7 +85,7 @@ describe('Rest API', function () {
       .set('Authorization', token)
       .expect(200)
       .end(function (error, response) {
-        expect(response.body.tokenAmount).to.equal('10000');
+        expect(response.body.tokenAmount).to.equal('4950');
         done();
       })
   });
