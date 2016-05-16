@@ -1,8 +1,10 @@
 var blockchain = require('./chainaccess');
 var contract = require('./contractfields');
 var fs = require('fs');
+var Q = require('q');
 
 module.exports = function() {
+  var deferred = Q.defer();
   blockchain.eth.contract(contract).new(
     {
       from: blockchain.eth.accounts[0],
@@ -15,6 +17,8 @@ module.exports = function() {
           + ' transactionHash: ' + contract.transactionHash
           + ' owner: ' + blockchain.eth.accounts[0]);
         fs.writeFileSync('contractaddress', contract.address, 'utf8');
+        deferred.resolve();
       }
     });
+  return deferred.promise;
 }();
