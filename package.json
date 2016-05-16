@@ -19,6 +19,7 @@
     "express-jwt": "^3.3.0",
     "faker": "^3.1.0",
     "jsonwebtoken": "5.7.0",
+    "q": "1.4.1",
     "swagger-express-mw": "^0.6.0",
     "web3": "0.16.0"
   },
