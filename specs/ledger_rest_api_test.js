@@ -41,6 +41,7 @@ describe('Rest API', function () {
       .end(function(error, response) {
         accountId = response.body[0].ethereumAddress;
         expectedAmount = response.body[0].tokenAmount;
+        expect(expectedAmount).to.equal('10000');
         expect(response.body.length).to.equal(10);
         done();
       });
