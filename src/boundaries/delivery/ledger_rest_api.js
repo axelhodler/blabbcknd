@@ -10,9 +10,6 @@ var process = require('process');
 
 module.exports = {
   start: function() {
-    var web3setup = require('./../blockchain/web3_setup');
-    web3setup.setup();
-
     var useTokenInAuthorizationHeader = function fromHeader (req) {
       var authorizationHeader = req.get('Authorization');
       return authorizationHeader ? authorizationHeader : null;

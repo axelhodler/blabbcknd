@@ -1,4 +1,5 @@
 var request = require('supertest');
+require('../src/boundaries/blockchain/web3_setup').setup();
 var server = require('../src/boundaries/delivery/ledger_rest_api').start();
 
 describe('Rest API', function () {
