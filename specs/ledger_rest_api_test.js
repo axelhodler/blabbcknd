@@ -29,8 +29,7 @@ describe('Rest API', function () {
     });
   });
 
-  var accountId,
-    expectedAmount;
+  var ownerAccountId;
 
   it('can read all ledger entries', function(done) {
     this.timeout(5000);
@@ -39,9 +38,7 @@ describe('Rest API', function () {
       .set('Authorization', token)
       .expect(200)
       .end(function(error, response) {
-        accountId = response.body[0].ethereumAddress;
-        expectedAmount = response.body[0].tokenAmount;
-        expect(expectedAmount).to.equal('10000');
+        ownerAccountId = response.body[0].ethereumAddress;
         expect(response.body.length).to.equal(10);
         done();
       });
@@ -49,12 +46,13 @@ describe('Rest API', function () {
 
   it('can read single ledger entry', function(done) {
     request(server)
-      .get('/ledgers/' + accountId)
+      .get('/ledgers/' + ownerAccountId)
       .set('Authorization', token)
       .expect(200)
       .end(function (error, response) {
-        expect(response.body.tokenAmount).to.equal(expectedAmount);
+        expect(response.body.tokenAmount).to.equal('10000');
         done();
       })
-  })
+  });
+
 });
