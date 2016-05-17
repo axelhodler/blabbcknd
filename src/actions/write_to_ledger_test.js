@@ -1,7 +1,13 @@
-var ethereumGatewayTd = td.replace('./../boundaries/blockchain/ethereum_gateway');
-var writeToLedger = require('./write_to_ledger');
-
 describe('Write to ledger', function() {
+  var ethereumGatewayTd,
+    writeToLedger;
+
+  beforeEach(function () {
+    ethereumGatewayTd = td.replace('./../boundaries/blockchain/ethereum_gateway');
+
+    writeToLedger = require('./write_to_ledger');
+  });
+
   it('sends tokens from one account to another', function() {
     writeToLedger.moveTokens('fromEtherAddress', 'toEtherAddress', 100);
 

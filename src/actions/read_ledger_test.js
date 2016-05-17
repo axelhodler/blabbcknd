@@ -1,8 +1,15 @@
-var ethereumGatewayTd = td.replace('./../boundaries/blockchain/ethereum_gateway');
-var accountGateway = td.replace('./../boundaries/database/account_gateway');
-var readLedger = require('./read_ledger');
-
 describe('ledger gateway', function() {
+  var ethereumGatewayTd,
+    accountGateway,
+    readLedger;
+
+  beforeEach(function () {
+    ethereumGatewayTd = td.replace('./../boundaries/blockchain/ethereum_gateway');
+    accountGateway = td.replace('./../boundaries/database/account_gateway');
+
+    readLedger = require('./read_ledger');
+  });
+
   it('provides balance for an account id', function() {
     td.when(accountGateway.fetchOwnerOf('ethereumAddress')).thenReturn('Felicitas Jebediah');
     td.when(ethereumGatewayTd.balanceOf('ethereumAddress')).thenReturn(1000);

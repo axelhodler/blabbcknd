@@ -1,14 +1,19 @@
-var readLedgerTd = td.replace('./../actions/read_ledger');
-var api = require('./rest_api_read_ledger');
 var LedgerEntry = require('./../model/ledger_entry');
 var Request = require('./../boundaries/delivery/request_wrapper');
 var Response = require('./../boundaries/delivery/response_wrapper');
 
 describe('ledger', function() {
+  var readLedgerTd,
+    api;
+
   var responseSpy,
     requestStub;
   
   beforeEach(function() {
+    readLedgerTd = td.replace('./../actions/read_ledger');
+
+    api = require('./rest_api_read_ledger');
+
     responseSpy = td.object(Response);
     requestStub = td.object(Request);
   });

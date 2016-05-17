@@ -1,13 +1,18 @@
-var authUser = td.replace('./../actions/auth_user');
-var api = require('./rest_api_gateway');
 var Request = require('./../boundaries/delivery/request_wrapper');
 var Response = require('./../boundaries/delivery/response_wrapper');
 
 describe('rest api gateway', function() {
+  var authUser,
+    api;
+
   var responseSpy,
     requestStub;
 
   beforeEach(function() {
+    authUser = td.replace('./../actions/auth_user');
+
+    api = require('./rest_api_gateway');
+
     responseSpy = td.object(Response);
     requestStub = td.object(Request);
   });

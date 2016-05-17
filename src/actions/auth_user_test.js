@@ -1,4 +1,3 @@
-
 describe('auth user', function() {
 
   var accountGateway;
