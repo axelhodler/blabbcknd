@@ -1,6 +1,6 @@
 function Response(response) {
   this.response = response;
-};
+}
 
 Response.prototype.send = function(result) {
   this.response.send(result);

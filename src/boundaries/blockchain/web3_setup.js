@@ -13,9 +13,9 @@ module.exports = function() {
     }, function(e, contract){
       // this callback will fire twice - first call is the transaction, second call the deployment
       if (typeof contract.address != 'undefined') {
-        console.log('Contract mined! address: ' + contract.address
-          + ' transactionHash: ' + contract.transactionHash
-          + ' owner: ' + blockchain.eth.accounts[0]);
+        console.log('Contract mined! address: ' + contract.address +
+          ' transactionHash: ' + contract.transactionHash +
+          ' owner: ' + blockchain.eth.accounts[0]);
         fs.writeFileSync('contractaddress', contract.address, 'utf8');
         deferred.resolve();
       }

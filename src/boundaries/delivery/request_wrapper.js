@@ -1,6 +1,6 @@
 function Request(request) {
   this.request = request;
-};
+}
 
 Request.prototype.idParam = function() {
   return this.request.swagger.params.id.value;

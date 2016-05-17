@@ -92,6 +92,5 @@ describe('auth user', function() {
       expect(firstAuthenticatedUserMail).to.equal('mailInDecoded@mailInDecoded.com');
       expect(secondAuthenticatedUserMail).to.equal('mail2@mail2.com');
     });
-
-  })
+  });
 });

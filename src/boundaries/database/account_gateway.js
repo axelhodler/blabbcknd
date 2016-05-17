@@ -23,7 +23,7 @@ var accounts = function () {
       'pw' + index,
       ethereumAddress,
       stubbedNames[index]
-    )
+    );
   });
 };
 

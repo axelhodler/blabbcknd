@@ -87,7 +87,7 @@ describe('Rest API', function () {
       .end(function (error, response) {
         expect(response.body.tokenAmount).to.equal('4950');
         done();
-      })
+      });
   });
 
 });
