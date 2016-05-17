@@ -27,6 +27,7 @@
   "scripts": {
     "testrpc": "./node_modules/ethereumjs-testrpc/bin/testrpc -p 8545",
     "test": "./node_modules/mocha/bin/mocha src/testhelpers/*.js src/**/*.js src/**/**/*.js",
+    "lint": "./node_modules/jshint/bin/jshint src specs",
     "specs": "npm run testrpc & sleep 2 && ./node_modules/mocha/bin/mocha src/testhelpers/*.js specs/*.js || : && kill %1",
     "coverage": "npm run testrpc & sleep 2 && ./node_modules/istanbul/lib/cli.js cover --config configs/istanbul.yml _mocha src/testhelpers/** src/**/*.js src/**/**/*.js specs/*.js || : && kill %1",
     "start": "npm run testrpc & sleep 2 && node src/app.js || : && kill %1",
