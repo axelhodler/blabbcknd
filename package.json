@@ -5,6 +5,7 @@
   "description": "",
   "devDependencies": {
     "chai": "3.5.0",
+    "cucumber": "^0.10.3",
     "ethereumjs-testrpc": "2.0.7",
     "istanbul": "0.4.3",
     "jshint": "^2.9.2",
