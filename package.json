@@ -5,6 +5,7 @@
   "description": "",
   "devDependencies": {
     "chai": "3.5.0",
+    "cucumber": "^0.10.3",
     "ethereumjs-testrpc": "2.0.7",
     "istanbul": "0.4.3",
     "jshint": "^2.9.2",
@@ -31,6 +32,7 @@
     "specs": "npm run testrpc & sleep 2 && ./node_modules/mocha/bin/mocha src/testhelpers/*.js specs/*.js || : && kill %1",
     "coverage": "npm run testrpc & sleep 2 && ./node_modules/istanbul/lib/cli.js cover --config configs/istanbul.yml _mocha src/testhelpers/** src/**/*.js src/**/**/*.js specs/*.js || : && kill %1",
     "start": "npm run testrpc & sleep 2 && node src/app.js || : && kill %1",
+    "cuke": "./node_modules/.bin/cucumber.js features",
     "postinstall": "npm rebuild"
   }
 }
