@@ -21,7 +21,6 @@ module.exports = function() {
   });
 
   this.Given(/^a project owner "([^"]*)"$/, function (owner_address) {
-    projectOwner = owner_address;
     this.project = new Project(owner_address, 0);
   });
 
