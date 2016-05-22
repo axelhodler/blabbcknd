@@ -1,6 +1,10 @@
 var expect = require('chai').expect;
 var Project = require('../../src/model/project');
 
+var toInt = function(input) {
+  return +input;
+};
+
 module.exports = function() {
   var project,
     owner,
@@ -11,7 +15,7 @@ module.exports = function() {
   });
 
   this.Given(/^an amount of initial tokens (\d+)$/, function (tokens) {
-    initialTokens = tokens;
+    initialTokens = toInt(tokens);
   });
 
   this.When(/^blocklab creates a project$/, function () {
@@ -19,6 +23,6 @@ module.exports = function() {
   });
 
   this.Then(/^the project\-owner holds (\d+) tokens$/, function (expectedTokenAmount) {
-    expect(project.availableTokens()).to.equal(+expectedTokenAmount);
+    expect(project.availableTokens()).to.equal(toInt(expectedTokenAmount));
   });
 };
