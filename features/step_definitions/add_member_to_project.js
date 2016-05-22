@@ -8,13 +8,13 @@ module.exports = function() {
     project.addMember(member);
   };
 
+  this.Given(/^a project owned by "([^"]*)" with initial tokens of (\d+)$/, function (owner, initialTokens) {
+    project = new Project(owner, +initialTokens);
+  });
+
   this.Given(/^a project owner "([^"]*)"$/, function (owner_address) {
     projectOwner = owner_address;
     project = new Project(owner_address, 0);
-  });
-
-  this.Given(/^initial tokens of (\d+)$/, function (initialTokens) {
-    project = new Project(projectOwner, +initialTokens);
   });
 
   this.Given(/^a project member "([^"]*)"$/, function (member) {
