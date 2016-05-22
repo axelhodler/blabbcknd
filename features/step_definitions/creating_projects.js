@@ -1,4 +1,3 @@
-var expect = require('chai').expect;
 var Project = require('../../src/model/project');
 
 var toInt = function(input) {
