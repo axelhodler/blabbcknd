@@ -5,8 +5,7 @@ var toInt = function(input) {
 };
 
 module.exports = function() {
-  var project,
-    owner,
+  var owner,
     initialTokens;
 
   this.Given(/^a prospect project owner "([^"]*)"$/, function (owner_address) {
@@ -18,10 +17,10 @@ module.exports = function() {
   });
 
   this.When(/^blocklab creates a project$/, function () {
-    project = new Project(owner, initialTokens);
+    this.project = new Project(owner, initialTokens);
   });
 
   this.Then(/^the project\-owner holds (\d+) tokens$/, function (expectedTokenAmount) {
-    expect(project.availableTokens()).to.equal(toInt(expectedTokenAmount));
+    expect(this.project.availableTokens()).to.equal(toInt(expectedTokenAmount));
   });
 };
