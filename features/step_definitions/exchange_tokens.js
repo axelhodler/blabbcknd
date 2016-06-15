@@ -7,8 +7,4 @@ module.exports = function() {
   this.When(/^member "([^"]*)" exchanges (\d+) tokens to euro$/, function (member, tokensToExchange) {
     this.project.exchangeTokens(tokensToExchange, member);
   });
-
-  this.Then(/^member "([^"]*)" has (\d+) tokens left$/, function (member, expectedTokens) {
-    expect(this.project.tokenAmountFor(member)).to.equal(+expectedTokens);
-  });
 };
