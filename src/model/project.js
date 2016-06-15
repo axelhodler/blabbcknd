@@ -3,10 +3,6 @@ function Project(projectOwner, tokens) {
   this.tokens = tokens;
 }
 
-Project.prototype.getId = function() {
-  return this.id;
-};
-
 Project.prototype.availableTokens = function() {
   return this.tokens;
 };
