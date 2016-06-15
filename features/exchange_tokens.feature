@@ -8,3 +8,4 @@ Feature:
     Given a member "0xf169ef68f693bd67473387e2a8bbec2005279db3" has 20 tokens
     When member "0xf169ef68f693bd67473387e2a8bbec2005279db3" exchanges 10 tokens to euro
     Then member "0xf169ef68f693bd67473387e2a8bbec2005279db3" has 10 tokens
+    Then a fiattransaction sending 10 euros to member "0xf169ef68f693bd67473387e2a8bbec2005279db3" was created
