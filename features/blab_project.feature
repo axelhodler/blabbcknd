@@ -14,8 +14,9 @@ Feature: Creating a project
     Given an amount of initial tokens <tokens>
     When blocklab creates a project
     Then the project-owner holds <tokens> tokens
+    Then the project has the id <project_id>
 
     Examples:
-      | owner                                        | tokens |
-      | "0x9a9f2672a4563a7f20b63831a731ccd01afa7f33" | 150    |
-      | "0xf169ef68f693bd67473387e2a8bbec2005279db3" | 1000   |
+      | owner                                        | tokens | project_id |
+      | "0x9a9f2672a4563a7f20b63831a731ccd01afa7f33" | 150    | 1          |
+      | "0xf169ef68f693bd67473387e2a8bbec2005279db3" | 1000   | 2          |
