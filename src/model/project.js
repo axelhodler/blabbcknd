@@ -20,4 +20,8 @@ Project.prototype.assignTokens = function(amount, member) {
   this.members.set(member, amount);
 };
 
+Project.prototype.exchangeTokens = function(amount, member) {
+  this.members.set(member, this.tokenAmountFor(member) - amount);
+};
+
 module.exports = Project;
