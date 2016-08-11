@@ -1,14 +1,14 @@
 function LedgerEntry(ethereumAddress, tokenAmount) {
-  this.ethereumAddress = ethereumAddress;
-  this.tokenAmount = tokenAmount;
+  this._ethereumAddress = ethereumAddress;
+  this._tokenAmount = tokenAmount;
+
+  this.getEthereumAddress = function() {
+    return this._ethereumAddress;
+  };
+
+  this.getTokenAmount = function() {
+    return this._tokenAmount;
+  };
 }
-
-LedgerEntry.prototype.getEthereumAddress = function() {
-  return this.ethereumAddress;
-};
-
-LedgerEntry.prototype.getTokenAmount = function() {
-  return this.tokenAmount;
-};
 
 module.exports = LedgerEntry;

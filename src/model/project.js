@@ -1,27 +1,28 @@
 function Project(projectOwner, tokens) {
-  this.members = new Map();
-  this.tokens = tokens;
+  this._members = new Map();
+  this._tokens = tokens;
+
+  this.availableTokens = function() {
+    return this._tokens;
+  };
+
+  this.addMember = function(member) {
+    this._members.set(member, 0);
+  };
+
+  this.tokenAmountFor = function(member) {
+    return this._members.get(member);
+  };
+
+  this.assignTokens = function(amount, member) {
+    this.tokens -= amount;
+    this._members.set(member, amount);
+  };
+
+  this.exchangeTokens = function(amount, member) {
+    this._members.set(member, this.tokenAmountFor(member) - amount);
+  };
+
 }
-
-Project.prototype.availableTokens = function() {
-  return this.tokens;
-};
-
-Project.prototype.addMember = function(member) {
-  this.members.set(member, 0);
-};
-
-Project.prototype.tokenAmountFor = function(member) {
-  return this.members.get(member);
-};
-
-Project.prototype.assignTokens = function(amount, member) {
-  this.tokens -= amount;
-  this.members.set(member, amount);
-};
-
-Project.prototype.exchangeTokens = function(amount, member) {
-  this.members.set(member, this.tokenAmountFor(member) - amount);
-};
 
 module.exports = Project;
