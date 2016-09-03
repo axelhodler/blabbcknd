@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var process = require('process');
 
+/*
+  The express REST-api routes are all defined via the swagger-express-mw in swagger.yaml
+ */
 module.exports = {
   start: function() {
     var useTokenInAuthorizationHeader = function fromHeader (req) {
